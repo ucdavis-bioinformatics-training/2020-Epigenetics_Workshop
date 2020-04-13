@@ -1,7 +1,3 @@
-All documentation for the workshop is best viewed from the github.io pages
-
-[Documentation](https://ucdavis-bioinformatics-training.github.io/2020-Epigenetics_Workshop/)
-
 Bioinformatics: RNA-Seq Workshop @ UC Davis  
 Nov. 30, 2020, 9 a.m. - Dec. 04, 2020, 4:30 p.m.  
 Organizer - Bioinformatics Core  
