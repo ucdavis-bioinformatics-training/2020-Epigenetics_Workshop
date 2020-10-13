@@ -6,8 +6,8 @@ navigation:
   - title: Home
     url: /
 
-  - heading: Introduction
-  - title: Intro to the Workshop and Core
-    url: welcome
-  - title: Examples of Markdown Formatting
-    url: examples
+  - heading: Support
+  - title: Slack
+    url: base/slack
+  - title: Zoom
+    url: base/zoom
