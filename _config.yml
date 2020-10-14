@@ -11,3 +11,9 @@ navigation:
     url: base/slack
   - title: Zoom
     url: base/zoom
+
+  - heading: Prerequisites
+  - title: Introduction to the Command Line
+    url: prereqs/intro-cli
+  - title: Introduction to R
+    url: prereqs/Intro2R_main
