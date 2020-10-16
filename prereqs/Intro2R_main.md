@@ -30,7 +30,7 @@ Some of R's strengths:
 
 * The ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. Great care has been taken over the defaults for the minor design choices in graphics, but the user retains full control. Such as examples like the following (extracted from http://web.stanford.edu/class/bios221/book/Chap-Graphics.html):
 
-<img src="figures/chap3-rgraphics-heatmap-1.png" width="32%" /><img src="figures/chap3-rgraphics-darned1-1.png" width="32%" /><img src="figures/chap3-rgraphics-twodsp4-1.png" width="32%" />
+<img src="figures/R/chap3-rgraphics-heatmap-1.png" width="32%" /><img src="figures/R/chap3-rgraphics-darned1-1.png" width="32%" /><img src="figures/R/chap3-rgraphics-twodsp4-1.png" width="32%" />
 
 * It compiles and runs on a wide variety of UNIX platforms and similar systems (including FreeBSD and Linux), Windows and MacOS.
 * R can be extended (easily) via packages.
@@ -119,14 +119,14 @@ A variable is a named storage. Creating a variable is to reserve some space in m
 
 A function is a block of organized, reusable code that is used to perform a set of predefined operations. A function may take zero or more parameters and return a result.
 
-<img src="figures/func.png" width="15%" style="display: block; margin: auto;" />
+<img src="figures/R/func.png" width="15%" style="display: block; margin: auto;" />
 
 
 The way to use a function in R is:
 
 **function.name(parameter1=value1, ...)**
 
-In R, to get help information on a funciton, one may use the command:
+In R, to get help information on a function, one may use the command:
 
 **?function.name**
 
