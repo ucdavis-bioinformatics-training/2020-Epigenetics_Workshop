@@ -6,11 +6,19 @@ navigation:
   - title: Home
     url: /
 
+  - heading: Introduction
+  - title: Introdcution to the Workshop and the Core
+    url: base/welcome
+  - title: Schedule
+    url: base/schedule
+
   - heading: Support
   - title: Slack
     url: base/slack
   - title: Zoom
     url: base/zoom
+  - title: Cheat Sheets
+    url: base/cheatSheetIndex
 
   - heading: Prerequisites
   - title: Introduction to the Command Line
