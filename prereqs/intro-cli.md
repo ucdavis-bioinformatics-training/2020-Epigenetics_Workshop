@@ -8,7 +8,7 @@ While we will be available to help if you are still struggling with this materia
 
 The command line interface (CLI) is a text-based interface into which the user types commands in order to type commands and perform tasks. Most of the time when using the CLI, your mouse will not work.
 
-<img src="figures/intro-cli-part1-1.png" alt="cli_figure1" width="800px"/>
+<img src="figures/cli/what_is_cli.png" alt="terminal" width="800px"/>
 
 ## Syntax of a command
 
@@ -20,7 +20,7 @@ A command is made up of components separated by spaces:
 * Arguments
 * The separator used in issuing a command is space, number of spaces does not matter
 
-<img src="figures/cli_figure3.png" alt="cli_figure3" width="800px"/>
+<img src="figures/cli/cli_prompt.png" alt="prompt" width="800px"/>
 
 A greater than sign (>) instead of a prompt means the shell is expecting more input. You can use Cntr-c to cancel the operation and return to a prompt.
 
@@ -38,7 +38,7 @@ Once you're done working on the command line, you can exit. Anything that follow
 
     exit  # kills the current shell!
 
-<img src="figures/intro-cli-part1-4.png" alt="cli_figure4" width="800px"/>
+<img src="figures/cli/login.png" alt="logging in" width="800px"/>
 
 Go ahead and log back into the server.
 
@@ -59,11 +59,11 @@ Relative path: always relative to our current location.
 _a single dot (.) refers to the current directory_
 _two dots (..) refers to the directory one level up_
 
-<img src="figures/cli_figure2.png" alt="cli_figure2" width="500px"/>
+<img src="figures/cli/linux_tree.png" alt="standard Linux directory tree" width="500px"/>
 
 Usually, /home is where the user accounts reside, ie. user’s 'home' directory.
 For example, for a user that has a username of "hslyman" (me): their home directory is /home/hslyman
-It is the directory that a user is located after starting a new shell or logging into a remote server .
+It is the directory that a user is located after starting a new shell or logging into a remote server.
 
 The tilde (~) is a short form of a user’s home directory.
 
@@ -146,7 +146,7 @@ The filesystem you're working on is like the branching root system of a tree. Th
     cd ..  # '..' always means one directory up
     pwd
 
-<img src="figures/intro-cli-part1-5.png" alt="cli_figure5" width="800px"/>
+<img src="figures/cli/getting_around.png" alt="navigation using cd" width="800px"/>
 
 You should also notice the location changes in your prompt.
 
@@ -576,7 +576,7 @@ If you used bg to send a process to the background you can use 'disown' to "nohu
 
 The 'top' command prints a self-updating table of running processes and system stats. Use 'q' to exit top, 'z' to toggle better color contrast, 'M' to sort by memory use, 'P' to sort by processor use, and 'c' to toggle display of the full commands. Hit '1' to toggle display of all processors, and hit 'u' followed by typing in a username in order to only show processes (jobs) owned by that user.
 
-<img src="figures/cli_figure6.png" alt="cli_figure6" width="800px"/>
+<img src="figures/cli/top.png" alt="table of processes" width="800px"/>
 
 ## Shell Scripts, File Permissions
 
@@ -584,7 +584,7 @@ Often it's useful to define a whole string of commands to run on some input, so 
 
     nano test.sh
 
-<img src="figures/cli_figure7.png" alt="cli_figure7" width="800px"/>
+<img src="figures/cli/nano.png" alt="nano text editor" width="800px"/>
 
 nano now occupies the whole screen; see commands at the bottom
 Type/paste in the following (note that '#!' is an interpreted command to the shell, not a comment):
