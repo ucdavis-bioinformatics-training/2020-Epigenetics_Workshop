@@ -28,7 +28,7 @@ The main commands we will be using are srun, sbatch, squeue, scancel, and sacct.
 
 Our cluster requires that you specify a time limit for your job. If your job exceeds these limits, then it will be killed. So try running the following to create an interactive session on a node:
 
-    srun -t 00:30:00 -c 1 -n 1 --mem 500 --partition production --account workshop  --pty /bin/bash
+    srun -t 00:30:00 -c 1 -n 1 --mem 500 --partition production --account workshop --reservation workshop --pty /bin/bash
 
 This command is requesting a compute node with a time limit of 30 minutes (-t), one processor (-c), a max memory of 0.5Gb [500] (--mem), and then finally, specifying a shell to run in a terminal ("--pty" option). Run this command to get to a compute node when you want to run jobs on the command-line directly.
 
@@ -61,6 +61,7 @@ Generally, we do not use any options for sbatch ... we typically give it a scrip
 #SBATCH --mem=2000 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --partition=production # cluster partition
 #SBATCH --account=workshop # cluster account to use for the job
+#SBATCH --reservation=workshop # cluster reservation to use for the job
 ##SBATCH --array=1-16 # Task array indexing, see https://slurm.schedmd.com/job_array.html, the double # means this line is commented out
 #SBATCH --output=stdout.out # File to which STDOUT will be written
 #SBATCH --error=stderr.err # File to which STDERR will be written

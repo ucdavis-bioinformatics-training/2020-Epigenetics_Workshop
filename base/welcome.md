@@ -87,7 +87,7 @@ Request an account -> sponsor is "Bioinformatics Core Workshop"
 
 If you already have, or have had in the past, an account on our systems, then please tell us your username, or email, and we will add you to the workshop. **Do not create a new account**
 
-Cluster usage will be under the slurm reservation ‘epigenetics_workshop’
+Cluster usage will be under the slurm reservation ‘workshop’
 
-<div class="output">ReservationName=epigenetics_workshop StartTime=2020-11-20T00:00:00 EndTime=2020-12-12T00:00:00 Duration=22-00:00:00
+<div class="output">ReservationName=workshop StartTime=2020-11-20T00:00:00 EndTime=2020-12-12T00:00:00 Duration=22-00:00:00
 </div>
