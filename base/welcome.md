@@ -89,5 +89,5 @@ If you already have, or have had in the past, an account on our systems, then pl
 
 Cluster usage will be under the slurm reservation ‘workshop’
 
-<div class="output">ReservationName=workshop StartTime=2020-11-20T00:00:00 EndTime=2020-12-12T00:00:00 Duration=22-00:00:00
+<div class="output">ReservationName=workshop StartTime=2020-11-30T00:00:00 EndTime=2020-12-12T00:00:00 Duration=22-00:00:00
 </div>
