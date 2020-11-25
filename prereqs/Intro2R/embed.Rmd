@@ -123,6 +123,8 @@ You can run this tutorial in an IDE (like Rstudio) on your laptop, or you can ru
 >
 > R
 
+**NOTE: Below, the text in the yellow boxes is code to input (by typing it or copy/pasting) into your R session, the text in the white boxes is the expected output.**
+
 ---
 
 Topics covered in this introduction to R
