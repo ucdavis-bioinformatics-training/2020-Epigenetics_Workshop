@@ -179,19 +179,35 @@ Lists directories and files *recursively*. This will be a very long output, so u
 
 Navigate this page using the up and down arrow keys, PageUp and PageDown, and then use q to quit out of the manual. In this manual page, find the following options, quit the page, and then try those commands. You could even open another terminal, log in again, and run manual commands in that terminal.
 
-    ls -l /share/genomes/GENCODE/GRCm38.p6/ # long format, gives permission values, owner, group, size, time, and name
-    ls -a /share/genomes/GENCODE/GRCm38.p6/
-    ls -l -a /share/genomes/GENCODE/GRCm38.p6/
-    ls -la  /share/genomes/GENCODE/GRCm38.p6/ # option 'smushing' ... when no values need specifying
-    ls -ltrha /share/genomes/GENCODE/GRCm38.p6/
-    
-And finally adding color: 
+    ls -l /share/genomes/GENCODE/GRCm38.p6/ # long format, gives permission values, owner, group, size, modification time, and name
 
-    ls -ltrha --color  # single letter (smushed) vs word options (Linux)
+<img src="figures/ls1.png" alt="ls1" width="800px"/>
+
+    ls -a /share/genomes/GENCODE/GRCm38.p6/ # shows ALL files, including hidden ones
+
+<img src="figures/ls2.png" alt="ls2" width="800px"/>
+
+    ls -l -a /share/genomes/GENCODE/GRCm38.p6/ # does both of the above
+
+<img src="figures/ls3.png" alt="ls3" width="800px"/>
+
+    ls -la  /share/genomes/GENCODE/GRCm38.p6/ # option 'smushing' can be done with single letter options
+
+<img src="figures/ls4.png" alt="ls4" width="800px"/>
+
+    ls -ltrha /share/genomes/GENCODE/GRCm38.p6/ # shows all files, long format, in last modified time reverse order, with human readable sizes
+
+<img src="figures/ls5.png" alt="ls5" width="800px"/>
+    
+And finally adding color (white for regular files, blue for directories, turquoise for links): 
+
+    ls -ltrha --color /share/genomes/GENCODE/GRCm38.p6/ # single letter (smushed) vs word options (Linux)
     
 **OR**
 
-    ls -ltrhaG  # (MacOS)
+    ls -ltrhaG /share/genomes/GENCODE/GRCm38.p6/ # (MacOS)
+
+<img src="figures/ls6.png" alt="ls6" width="800px"/>
 
 
 Quick aside: what if I want to use same options repeatedly? and be lazy? You can create a shortcut to another command using 'alias'.
@@ -387,7 +403,7 @@ submitButton2.addEventListener('click', function() {showResults(myQuestions2, qu
 
 Linux remembers everything you've done (at least in the current shell session), which allows you to pull steps from your history, potentially modify them, and redo them. This can obviously save a lot of time and typing.
 
-The 'head' and 'tail' commands view the first 10 (by default) lines of a file and last 10 lines of a file (type 'man head' or 'man tail' to consult their manuals).
+The 'head' command views the first 10 (by default) lines of a file. The 'tail' commands views the last 10 (by default) lines of a file. Type 'man head' or 'man tail' to consult their manuals.
     <up arrow>  # last command
     <up>  # next-to-last command
     <down>  # last command, again
@@ -438,7 +454,7 @@ You can also search your history from the command line:
 2. Type in your username and password.
 3. Make sure the File Protocol is SFTP.
 4. Press "Login".
-5. Look at the [documentation](https://winscp.net/eng/docs/getting_started) to learn how to transfer items.
+5. Look at the [WinSCP documentation](https://winscp.net/eng/docs/getting_started) to learn how to transfer items.
 
 **Try transferring a file from tadpole to your local computer.**
 
@@ -650,7 +666,7 @@ myQuestions4 = [
     correctAnswer: "d"
   },
   {
-    question: "Which of the following commands will list all of the txt files in all the 'Genes' directories?",
+    question: "Which of the following commands will list all of the txt files in all the 'Genes' directories underneath the 'Archives' directory?",
     answers: {
       a: "ls PhiX/Illumina/RTA/*o*/Archives/*/*/*.txt",
       b: "ls PhiX/Illumina/RTA/A*/Archives/*/*.txt",
@@ -660,7 +676,7 @@ myQuestions4 = [
     correctAnswer: "a"
   },
   {
-    question: "Find the 'genome.fa' file in the PhiX directory. Use pipes to get characters 640 to 700 in the second line of the file:",
+    question: "Find 'genome.fa' file in the PhiX directory. Use pipes to get characters 640 to 700 in the second line of the file:",
     answers: {
       a: "GCTCGTCGCTGCGTTGAGGCTTGCGTTTATGGTACGCTGGACTTTGTAGGATACCCTCGCT",
       b: "TATTAAGCTCATTCAGGCTTCTGCCGTTTTGGATTTAACCGAAGATGATTTCGATTTTCTG",
@@ -844,7 +860,7 @@ submitButton5 = document.getElementById('submit5');
 
 myQuestions5 = [
   {
-    question: "In the PhiX fasta file, find the stop codon TGA and find the 3rd codon upstream of each stop codon. What is the most common codon?",
+    question: "In the PhiX fasta file (phix.fa), find the stop codon TGA and find the 3rd codon upstream of each stop codon. What is the most common codon?",
     answers: {
       a: "GAT",
       b: "TTT",
