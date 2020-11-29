@@ -13,6 +13,7 @@ All posted times are **Pacific** time zone. At least one break will be provided 
 |**3:00 pm**  | Using the HPC Cluster |    
 |**4:00 pm**  | Introduction to Bioinformatics |   
 |**5:00 pm**  | Zoom session ends |
+|<img width="10%"/>|<img width="90%"/>|
 
 #### Tuesday, December 1 - ChIP seq and ATAC seq
 
@@ -20,6 +21,7 @@ All posted times are **Pacific** time zone. At least one break will be provided 
 |**8:50 am**  | Zoom session starts |
 |**12:00 pm** | Lunch |
 |**5:00  pm** | Zoom session ends |
+|<img width="10%"/>|<img width="90%"/>|
 
 #### Wednesday, December 2 - ChIP seq and ATAC seq
 
