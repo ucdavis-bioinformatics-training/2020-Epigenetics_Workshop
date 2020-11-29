@@ -3,17 +3,17 @@
 # options for sbatch
 #SBATCH --job-name=name # Job name
 #SBATCH --nodes=1 # should never be anything other than 1
-#SBATCH --cpus-per-task=1 # number of cpus to use
+#SBATCH --ntasks=1 # number of cpus to use
 #SBATCH --time=60 # Acceptable time formats include "minutes", "minutes:seconds", "hours:minutes:seconds", "days-hours", "days-hours:minutes" and "days-hours:minutes:seconds".
 #SBATCH --mem=2000 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --partition=production # cluster partition
-#SBATCH --account=workshop # cluster account to use for the job
-#SBATCH --reservation=workshop # cluster reservation to use for the job
+#SBATCH --account=intro_scrna_workshop # cluster account to use for the job
+#SBATCH --reservation=intro_scrna_workshop # cluster account reservation
 ##SBATCH --array=1-16 # Task array indexing, see https://slurm.schedmd.com/job_array.html, the double # means this line is commented out
 #SBATCH --output=stdout.out # File to which STDOUT will be written
 #SBATCH --error=stderr.err # File to which STDERR will be written
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=myemail@email.com # replace with your own email to get updates from the scheduler
+#SBATCH --mail-user=myemail@email.com
 
 # for calculating the amount of time the job takes and echo the hostname
 begin=`date +%s`
