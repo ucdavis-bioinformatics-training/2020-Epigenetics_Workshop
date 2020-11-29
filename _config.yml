@@ -34,13 +34,13 @@ navigation:
   - title: High Performance Computing
     url: prereqs/CLI_Intro/cluster
 
-  - heading: Data Reduction ChIPseq/ATACseq
+#  - heading: Data Reduction ChIPseq/ATACseq
 
-  - heading: Data Analysis ChIPseq/ATACseq
+#  - heading: Data Analysis ChIPseq/ATACseq
 
-  - heading: Data Reduction Methylation
+#  - heading: Data Reduction Methylation
 
-  - heading: Data Analysis Methylation
+#  - heading: Data Analysis Methylation
 
   - heading: ETC
   - title: Closing thoughts
