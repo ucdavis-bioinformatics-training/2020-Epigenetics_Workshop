@@ -23,7 +23,5 @@ navigation:
   - heading: Prerequisites
   - title: Introduction to the Command Line
     url: prereqs/CLI_Intro/command-line-intro
-  - title: Clusters and Modules
-    url: prereqs/CLI_Intro/cluster
   - title: Introduction to R
     url: prereqs/Intro2R/Intro2R_main
