@@ -7,7 +7,7 @@ navigation:
     url: /
 
   - heading: Introduction
-  - title: Introdcution to the Workshop and the Core
+  - title: Introduction to the Workshop and the Core
     url: base/welcome
   - title: Schedule
     url: base/schedule

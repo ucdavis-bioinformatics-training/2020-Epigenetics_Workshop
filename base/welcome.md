@@ -53,7 +53,18 @@ We ask for a little more patience as this process is also new to us, but we are 
 
 ### Workshop Goals
 
-This workshop is an end-to-end exploration of three popular types of epigenetic experiments: whole genome bisulfite sequencing, ChIP-Seq, and ATAC-Seq.
+This workshop is an end-to-end exploration of three popular types of epigenetic experiments: ChIP-Seq, ATAC-Seq, and whole genome bisulfite sequencing (WGBS).
+
+* End to End understanding of the basics
+  * Lectures/Discussions
+  * Technologies use
+  * Experimental design
+  * Cost estimation
+  * Workflow
+  * Data reduction
+  * Data analysis
+
+* To work through complete experiments, starting from raw data to completion, including making a few figures.
 
 * Goal is 30-40% lecture/discussion 60-70% hands-on
 
@@ -86,8 +97,3 @@ Everyone should get an account.
 Request an account -> sponsor is "Bioinformatics Core Workshop"
 
 If you already have, or have had in the past, an account on our systems, then please tell us your username, or email, and we will add you to the workshop. **Do not create a new account**
-
-Cluster usage will be under the slurm reservation ‘workshop’
-
-<div class="output">ReservationName=workshop StartTime=2020-11-30T00:00:00 EndTime=2020-12-12T00:00:00 Duration=22-00:00:00
-</div>
