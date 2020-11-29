@@ -2,7 +2,15 @@
 
 **1\.** In the UC Davis Bioinformatics Core we have a large computational cluster (named lssc0) that we use for our analyses. The job scheduling system we use on this cluster is called [Slurm](https://slurm.schedmd.com/). In this section, we will go through examples of the commands we will be using to interact with the cluster.
 
-First, what is a cluster?
+For this workshop we will be using a cluster reservation, meaning we've set aside resources (5 nodes) for exclusive use by the workshop, so any wait times will be minimal. The reservation is:
+
+|:---|:---|:---|:---|:---|
+|RESV_NAME              |  STATE  |         START_TIME  |           END_TIME     | DURATION
+|epigenetics-workshop   | ACTIVE  |2020-11-29T00:00:00  |2020-12-11T00:00:00  | 12-00:00:00  
+
+You'll notice the reservation extends to Dec-11-2020, you will have an extra week to work on the cluster and workshop material.
+
+## First, what is a cluster?
 
 <img src="figures/cluster_diagram.png" alt="figures/cluster_diagram" width="800px"/>
 
@@ -50,7 +58,7 @@ use Exit on the command line to exit the session
 
     sbatch --help
 
-Generally, we do not use any options for sbatch ... we typically give it a script (i.e. a text file with commands inside) to run. Let's take a look at a template script [template.slurm](../scripts/template.slurm):
+Generally, we do not use any options for sbatch ... we typically give it a script (i.e. a text file with commands inside) to run. Let's take a look at a template script [template.slurm](../software_scripts/scripts/template.slurm):
 
 <pre class="prettyprint"><code class="language-sh" style="background-color:333333">#!/bin/bash
 # options for sbatch
@@ -60,7 +68,8 @@ Generally, we do not use any options for sbatch ... we typically give it a scrip
 #SBATCH --time=30 # Acceptable time formats include "minutes", "minutes:seconds", "hours:minutes:seconds", "days-hours", "days-hours:minutes" and "days-hours:minutes:seconds".
 #SBATCH --mem=500 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --partition=production # cluster partition
-#SBATCH --account=workshop # cluster account to use for the job
+#SBATCH --account=epigenetics-workshop # cluster account to use for the job
+#SBATCH --reservation=epigenetics-workshop # cluster account reservation
 ##SBATCH --array=1-16 # Task array indexing, see https://slurm.schedmd.com/job_array.html, the double # means this line is commented out
 #SBATCH --output=stdout.out # File to which STDOUT will be written
 #SBATCH --error=stderr.err # File to which STDERR will be written
@@ -71,7 +80,7 @@ Generally, we do not use any options for sbatch ... we typically give it a scrip
 begin=`date +%s`
 echo $HOSTNAME
 
-# Sleep for 60 seconds
+# Sleep for 5 minutes
 sleep 300
 
 # getting end time to calculate time elapsed
@@ -85,11 +94,11 @@ The first line tells sbatch what scripting language (bash here) the rest of the 
 
 
     cd /share/workshop/$USER
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019-Winter-Bioinformatics_Command_Line_and_R_Prerequisites_Workshop/master/scripts/template.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/template.slurm
     cat template.slurm
     sbatch template.slurm
 
-The non slurm version is the [template.sh](templates/template.sh) script. You'll notice it looks the same only missing the #SBATCH commands.
+The non slurm version is the [template.sh](..//software_scripts/scripts/template.sh) script. You'll notice it looks the same only missing the #SBATCH commands.
 
 After finishing you will see two new files in the directory stdout.out and stderr.err where stdout and stderr (respectively) were redirected to.
 
