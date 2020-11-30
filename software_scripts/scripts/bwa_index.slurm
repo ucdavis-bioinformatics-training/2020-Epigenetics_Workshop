@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=bar_index # Job name
+#SBATCH --job-name=bam_index # Job name
 #SBATCH --nodes=1
 #SBATCH --ntasks=8
 #SBATCH --time=120
@@ -8,8 +8,8 @@
 #SBATCH --partition=production
 #SBATCH --account=epigenetics # cluster account to use for the job
 #SBATCH --reservation=epigenetics-workshop # cluster account reservation
-#SBATCH --output=slurmout/bwa-index_%A.out # File to which STDOUT will be written
-#SBATCH --error=slurmout/bwa-index_%A.err # File to which STDERR will be written
+#SBATCH --output=slurm_out/bwa-index_%A.out # File to which STDOUT will be written
+#SBATCH --error=slurm_out/bwa-index_%A.err # File to which STDERR will be written
 
 start=`date +%s`
 echo $HOSTNAME
