@@ -411,7 +411,7 @@ We can now run the preprocessing routine across all samples on the real data usi
 
 ```bash
 cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
-wget https://ucdavis-bioinformatics-training.github.io/2020-Epigenetics_Workshop/software_scripts/scripts/hts_preproc.slurm
+wget https://ucdavis-bioinformatics-training.github.io/2020-Epigenetics_Workshop/software_scripts/scripts/hts_preproc.slurm hts_preproc.slurm
 less hts_preproc.slurm
 ```
 
@@ -487,7 +487,7 @@ Double check to make sure that slurm_out and 01-HTS_Preproc directories have bee
 
 ```bash
 cd /share/workshop/epigenetics_workshop/$USER/atacseq_example
-wget https://ucdavis-bioinformatics-training.github.io/2020-Epigenetics_Workshop/software_scripts/scripts/hts_preproc.slurm
+wget https://ucdavis-bioinformatics-training.github.io/2020-Epigenetics_Workshop/software_scripts/scripts/hts_preproc.slurm hts_preproc.slurm
 
 mkdir -p slurm_out  # -p tells mkdir not to complain if the directory already exists
 mkdir -p 01-HTS_Preproc
@@ -597,7 +597,9 @@ mkdir -p 01-HTS-multiqc-report
 multiqc -i ChIPseq-cleaning-report -o 01-HTS-ChIPseq-report ./01-HTS_Preproc
 ```
 
-Transfer ChIPseq-cleaning-report_multiqc_report.html to your computer and open it in a web browser.
+**Do the same for the ATACseq experiment**
+
+Transfer ChIPseq-cleaning-report_multiqc_report.html and ATACseq-cleaning-report_multiqc_report.html to your computer and open it in a web browser.
 
 Or in case of emergency, download this copy: [ChIPseq-cleaning-report_multiqc_report.html](ChIPseq-cleaning-report_multiqc_report.html) and [HTSMultiQC-cleaning-report_multiqc_report.html](ATACseq-cleaning-report_multiqc_report.html) for the ATACseq
 

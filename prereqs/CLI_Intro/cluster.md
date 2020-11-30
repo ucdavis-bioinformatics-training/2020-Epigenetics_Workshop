@@ -111,7 +111,7 @@ Looking at the help documentation, we see that we can filter the results based o
 
     squeue -u username
 
-<div class="output">msettles@tadpole:/share/workshop/msettles$ squeue -u msettles
+<div class="output">msettles@tadpole:/share/workshop/msettles$ squeue -u $USER
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
           29390121 productio     name msettles  R       0:06      1 drove-13
 </div>

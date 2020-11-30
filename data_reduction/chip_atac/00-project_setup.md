@@ -166,3 +166,7 @@ mkdir 01-HTS_Preproc
 ```
 
 1. What are the differences between the 2 datasets???
+
+## A "dna peak assay" data reduction flowchart
+
+<img src="ChIP_ATAC_flow.png" alt="chip_atac_flow" width="80%" style="border:5px solid #ADD8E6;"/>
