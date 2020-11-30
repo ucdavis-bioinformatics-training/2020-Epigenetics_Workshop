@@ -36,7 +36,7 @@ The main commands we will be using are srun, sbatch, squeue, scancel, and sacct.
 
 Our cluster requires that you specify a time limit for your job. If your job exceeds these limits, then it will be killed. So try running the following to create an interactive session on a node:
 
-    srun -t 00:30:00 -c 1 -n 1 --mem 500 --partition production --account workshop  --pty /bin/bash
+    srun -t 00:30:00 -c 1 -n 1 --mem 500 --partition production --account epigenetics --reservation epigenetics-workshop --pty /bin/bash
 
 This command is requesting a compute node with a time limit of 30 minutes (-t), one processor (-c), a max memory of 0.5Gb [500] (--mem), and then finally, specifying a shell to run in a terminal ("--pty" option). Run this command to get to a compute node when you want to run jobs on the command-line directly.
 
