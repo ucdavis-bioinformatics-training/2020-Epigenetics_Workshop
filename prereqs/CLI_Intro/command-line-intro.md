@@ -404,6 +404,7 @@ submitButton2.addEventListener('click', function() {showResults(myQuestions2, qu
 Linux remembers everything you've done (at least in the current shell session), which allows you to pull steps from your history, potentially modify them, and redo them. This can obviously save a lot of time and typing.
 
 The 'head' command views the first 10 (by default) lines of a file. The 'tail' commands views the last 10 (by default) lines of a file. Type 'man head' or 'man tail' to consult their manuals.
+
     <up arrow>  # last command
     <up>  # next-to-last command
     <down>  # last command, again
@@ -417,7 +418,7 @@ The 'head' command views the first 10 (by default) lines of a file. The 'tail' c
     history | tail
     !560  # re-executes 560th command (yours will have different numbers; choose the one that recreates your really important result!)
 
-    ## Editing Yourself
+## Editing Yourself
 
 Here are some more ways to make editing previous commands, or novel commands that you're building up, easier:
 
