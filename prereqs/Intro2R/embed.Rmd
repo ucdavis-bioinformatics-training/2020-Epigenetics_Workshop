@@ -1165,19 +1165,19 @@ kable(data.frame(Description=c("Mean", "Standard deviation", "Variance", "Minimu
 Calculate the mean expression for each sample.
 
 ```{r}
-apply(data1, 2, mean)
+apply(data3, 2, mean)
 ```
 
 Calculate the range of expression for each sample.
 
 ```{r}
-apply(data1, 2, range)
+apply(data3, 2, range)
 ```
 
 Calculate the quantiles of each samples.
 
 ```{r}
-apply(data1, 2, quantile)
+apply(data3, 2, quantile)
 ```
 
 
@@ -1207,7 +1207,7 @@ lines(x,y, type="l")
 boxplot() can be used to summarize data.
 
 ```{r}
-boxplot(data1, xlab="Sample ID", ylab="Raw Counts")
+boxplot(data3, xlab="Sample ID", ylab="Raw Counts")
 ```
 
 ```{r}
