@@ -5,7 +5,7 @@
 #SBATCH --ntasks=20 # Number of cores
 #SBATCH --mem=16000 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --time=1-00
-#SBATCH --array=1-12
+#SBATCH --array=1-7
 #SBATCH --partition=production # Partition to submit to
 #SBATCH --account=epigenetics # cluster account to use for the job
 #SBATCH --reservation=epigenetics-workshop # cluster account reservation
