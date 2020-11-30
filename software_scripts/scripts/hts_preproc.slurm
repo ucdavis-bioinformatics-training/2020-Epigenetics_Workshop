@@ -5,10 +5,10 @@
 #SBATCH --ntasks=9
 #SBATCH --time=12:00:00
 #SBATCH --mem=15000 # Memory pool for all cores (see also --mem-per-cpu)
+#SBATCH --array=1-7
 #SBATCH --partition=production
 #SBATCH --account=epigenetics # cluster account to use for the job
 #SBATCH --reservation=epigenetics-workshop # cluster account reservation
-#SBATCH --array=1-7
 #SBATCH --output=slurm_out/htstream_%A_%a.out # File to which STDOUT will be written
 #SBATCH --error=slurm_out/htstream_%A_%a.err # File to which STDERR will be written
 
