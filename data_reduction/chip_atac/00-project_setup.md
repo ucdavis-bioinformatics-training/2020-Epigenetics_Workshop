@@ -2,7 +2,7 @@
 
 Let's set up a project directory for the week, and talk a bit about project philosophy..
 
-##  Creating a Project Directory
+#  Creating a ChIPseq Project Directory
 
 First, create a directory for you and the example project in the workshop share directory:
 
@@ -119,3 +119,35 @@ $ ls
 4. Which run number is this for that sequencing?
 5. What lane was this ran on?
 6. Randomly check a few samples, were the all run the same sequencing, run, and lane?
+
+
+#  Creating a ATACseq Project Directory
+
+First, create a directory for you and the example project in the workshop share directory:
+
+```bash
+cd
+mkdir -p /share/workshop/epigenetics_workshop/$USER/atacseq_example
+```
+
+## Link Raw Fastq files
+
+1. Next, go into that directory, create a raw data directory (we are going to call this 00-RawData) and cd into that directory. Lets then create symbolic links to the sample directories that contains the raw data.
+
+    ```bash
+    cd /share/workshop/epigenetics_workshop/$USER/atacseq_example
+    mkdir 00-RawData
+    cd 00-RawData/
+    ln -s /share/biocore/workshops/2020_Epigenetics/ATACseq/00-RawData/* .
+    ```
+
+    This directory now contains a folder for each sample and the fastq files for each sample are in the sample folders.
+
+1. Let's create a sample sheet for the project and store sample names in a file called samples.txt
+
+    ```bash
+    ls > ../samples.txt
+    cat ../samples.txt
+    ```
+
+1. Now just like before, get to know your data.
