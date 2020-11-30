@@ -572,10 +572,10 @@ myQuestions3 = [
   {
     question: "Multiply my_matrix by itself, sum the columns, and then use the 'mean' function to find the mean:",
     answers: {
-      a: "6198.642",
-      b: "6199.117",
-      c: "6199.583",
-      d: "6198.781"
+      a: "24799.33",
+      b: "24797.33",
+      c: "24798.33",
+      d: "24796.33"
     },
     correctAnswer: "c"
   }
@@ -842,10 +842,10 @@ myQuestions4 = [
   {
     question: "Using my_list, multiply the Ranking by the Score and find the mean in one command. What is the output?",
     answers: {
-      a: "209.2743 without a warning",
-      b: "209.2743 with a warning",
-      c: "210.5461 without a warning",
-      d: "210.5461 with a warning"
+      a: "196.78 without a warning",
+      b: "196.78 with a warning",
+      c: "210.54 without a warning",
+      d: "210.54 with a warning"
     },
     correctAnswer: "b"
   },
@@ -1036,17 +1036,17 @@ apply(my_matrix, MARGIN=1, sum)
 ?lapply()
 
 # generate some random data matrix
-data1 <- as.data.frame(matrix(rnorm(49), ncol=7), stringsAsFactors=F)
-dim(data1)
+data3 <- as.data.frame(matrix(rnorm(49), ncol=7), stringsAsFactors=F)
+dim(data3)
 
 # calculate the sum for each row
-lapply(1:dim(data1)[1], function(x){sum(data1[x,])})
+lapply(1:dim(data3)[1], function(x){sum(data3[x,])})
 
 # comparing the results to apply() results
-apply(data1, MARGIN=1, sum)
+apply(data3, MARGIN=1, sum)
 
 # calculate log10 of the sum of each row
-lapply(1:dim(data1)[1], function(x){log10(sum(data1[x,]))})
+lapply(1:dim(data3)[1], function(x){log10(sum(data3[x,]))})
 ```
 
 ##### The function sapply() works like function lapply(), but tries to simplify the output to the most elementary data structure that is possible. As a matter of fact, sapply() is a "wrapper" function for lapply(). By default, it returns a vector.
@@ -1055,12 +1055,12 @@ lapply(1:dim(data1)[1], function(x){log10(sum(data1[x,]))})
 # To check the syntax of using sapply():
 ?sapply()
 
-sapply(1:dim(data1)[1], function(x){log10(sum(data1[x,]))})
+sapply(1:dim(data3)[1], function(x){log10(sum(data3[x,]))})
 ```
 
 ##### If the "simplify" parameter is turned off, sapply() will produced exactly the same results as lapply(), in the form of a list. By default, "simplify" is turned on.
 ```{r}
-sapply(1:dim(data1)[1], function(x){log10(sum(data1[x,]))}, simplify=FALSE)
+sapply(1:dim(data3)[1], function(x){log10(sum(data3[x,]))}, simplify=FALSE)
 ```
 
 #### The function tapply() applys a function to each subset of a vector based on a second vector of factors.
@@ -1130,9 +1130,9 @@ myQuestions5 = [
     question: "Use the 'sd' function along with sapply to get the standard deviation for every row in data1. Then find the maximum of those values:",
     answers: {
       a: "26106.23",
-      b: "26106.23",
-      c: "26106.23",
-      d: "26106.23"
+      b: "26107.23",
+      c: "26108.23",
+      d: "26105.23"
     },
     correctAnswer: "a"
   },
