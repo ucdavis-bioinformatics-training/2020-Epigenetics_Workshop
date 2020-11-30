@@ -380,7 +380,7 @@ submitButton2 = document.getElementById('submit2');
 
 myQuestions2 = [
   {
-    question: "Try to add a new element to a factor. When the new element does not match any of the levels of the factor, what will happen?",
+    question: "Try to add a new 7th element to the disease_stage factor. When the new element does not match any of the levels of the factor, what will happen?",
     answers: {
       a: "A new level will be added to the factor",
       b: "A new element will be added to the factor",
@@ -402,10 +402,10 @@ myQuestions2 = [
   {
     question: "What would the levels be for the following vector as a factor:<br>c('a','C','d','b',1,'!')",
     answers: {
-      a: "a C d 1 !",
-      b: "! 1 a d C",
-      c: "1 a C d !",
-      d: "! 1 a C d"
+      a: "a b C d 1 !",
+      b: "! 1 a b d C",
+      c: "1 a b C d !",
+      d: "! 1 a b C d"
     },
     correctAnswer: "d"
   }
