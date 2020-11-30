@@ -151,3 +151,18 @@ mkdir -p /share/workshop/epigenetics_workshop/$USER/atacseq_example
     ```
 
 1. Now just like before, get to know your data.
+
+    Perform the same operations as you did with ChIPseq
+
+1. Prepare our experiment folder for analysis
+
+Now go back to your 'atacseq_example' directory and create two directories called 'slurm_out' and '01-HTS_Preproc':
+
+```bash
+cd /share/workshop/epigenetics_workshop/$USER/atacseq_example
+mkdir References
+mkdir slurm_out
+mkdir 01-HTS_Preproc
+```
+
+1. What are the differences between the 2 datasets???
