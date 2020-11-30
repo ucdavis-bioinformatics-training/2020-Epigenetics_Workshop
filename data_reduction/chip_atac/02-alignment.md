@@ -433,3 +433,13 @@ multiqc -i ChIPseq-mapping-report -o 02-BWA-ChIPseq-report ./02-BWA
 Transfer ChIPseq-mapping-report_multiqc_report.html and ATACseq-mapping-report_multiqc_report.html to your computer and open it in a web browser.
 
 Or in case of emergency, download this copy: [ChIPseq-mapping-report_multiqc_report.html](ChIPseq-mapping-report_multiqc_report.html) and [HTSMultiQC-mapping-report_multiqc_report.html](ATACseq-mapping-report_multiqc_report.html) for the ATACseq
+
+
+
+
+**Questions:**
+1. Look at the script `map_bwa.slurm`. What does the `array=1-7` mean, why is it used, and what is the usage of it in the script itself?
+2. Look through the files in an output directory and check out what is present and discuss what each of them mean. (for example: `cd /share/workshop/epigenetics_workshop/$USER/chipseq_example/02-BWA/JLDY037E` )
+3. Come up with a brief command you might use to check that all of the sample alignments using BWA have a reasonable output and/or did not produce any errors (recall from htstream checks).
+4. Open `JLDY037E_bwa.bam.idxstats` in excel (or excel like application), and review. The table that this script creates ("summary_star_alignments.txt") can be pulled to your laptop via 'scp', or WinSCP, etc., and imported into a spreadsheet. Do read counts align according to chromosome size? Discuss ...
+5. If time, find some other regions/genes with high alignment count using IGV with your group. Where do they occur relative to genes?
