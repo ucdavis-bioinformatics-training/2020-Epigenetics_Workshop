@@ -1137,7 +1137,7 @@ myQuestions5 = [
     correctAnswer: "a"
   },
   {
-    question: "Now, expand from the previous question to get only those rows whose standard deviation is greater than 20000. What is the row name?",
+    question: "Now, using the apply function find only those rows whose standard deviation is greater than 20000. What is the row name?",
     answers: {
       a: "AT1G21310",
       b: "AT3G09260",
