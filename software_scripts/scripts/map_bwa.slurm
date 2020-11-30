@@ -41,7 +41,7 @@ module load bwa/0.7.17
 module load samtools/1.9
 
 output=${outpath}/${sample}/${sample}_bwa.bam
-mapfasta=./References/GRCm38.primary_assembly.genome.fa
+mapfasta=../References/GRCm38.primary_assembly.genome.fa
 
 call="bwa mem -t ${MAPTHREADS} \
  -R '@RG\tID:${sample}\tSM:${new_id}\tPL:ILLUMINA\tDS:Paired' \

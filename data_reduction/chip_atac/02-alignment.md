@@ -94,8 +94,11 @@ Technical artifacts should be considered during counting
 1. First lets make sure we are where we are supposed to be and that the References directory is available.
 
     ```bash
-    cd /share/workshop/epigenetics_workshop/$USER/chipseq_example
+    cd /share/workshop/epigenetics_workshop/$USER
+    mkdir -p References
     ```
+
+Since the references are the same for both projects we'll just create the one directory.
 
 1. To align our data we will need the genome (fasta) and annotation (gtf) for mouse. There are many places to find them, but we are going to get them from the [GENCODE](https://www.gencodegenes.org/mouse/release_M25.html).
 
@@ -175,7 +178,7 @@ Technical artifacts should be considered during counting
     **IF** For the sake of time, or for some reason it didn't finish, is corrupted, or you missed the session, you can **link** over a completed copy.
 
     ```bash
-    #ln -s /share/biocore/workshops/2020_Epigenetics/Reference/GRCm38.primary_assembly.genome.fa* /share/workshop/epigenetics_workshop/$USER/chipseq_example/References/.
+    #ln -s /share/biocore/workshops/2020_Epigenetics/Reference/GRCm38.primary_assembly.genome.fa* /share/workshop/epigenetics_workshop/$USER/References/.
     ```
 
 1. Now do the same for the ATACseq experiment
@@ -209,7 +212,7 @@ Technical artifacts should be considered during counting
     ```bash
     module load bwa
     bwa mem -t 8 \
-       ../Reference/GRCm38.primary_assembly.genome.fa \
+       ../../Reference/GRCm38.primary_assembly.genome.fa \
        JLDY037E.streamed_R1.fastq.gz \
        JLDY037E.streamed_R2.fastq.gz
     ```
@@ -258,7 +261,7 @@ Technical artifacts should be considered during counting
     #cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/HTS_testing/JLDY037E.streamed.bam /share/workshop/epigenetics_workshop/$USER/chipseq_example/HTS_testing/.
     ```
 
-2. Transfer JLDY037E.streamed.bam and JLDY037E.streamed_Aligned.sortedByCoord.out.bam (the index file) to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work].
+2. Transfer JLDY037E.streamed.bam and JLDY037E.streamed.bam.bai (the index file) to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work].
 
     In a new shell session on my laptop. **NOT logged into tadpole**. Replace [your_username] with your username
     ```bash
@@ -361,7 +364,7 @@ Technical artifacts should be considered during counting
     module load samtools/1.9
 
     output=${outpath}/${sample}/${sample}_bwa.bam
-    mapfasta=/share/biocore/workshops/2020_Epigenetics/Reference/GRCm38.primary_assembly.genome.fa
+    mapfasta=../References/GRCm38.primary_assembly.genome.fa
 
     call="bwa mem -t ${MAPTHREADS} \
      -R '@RG\tID:${sample}\tSM:${new_id}\tPL:ILLUMINA\tDS:Paired' \
@@ -410,7 +413,7 @@ Technical artifacts should be considered during counting
     sbatch map_bwa.slurm  # moment of truth!
     ```
 
-    We can watch the progress of our task array using the 'squeue' command. Takes about 30 minutes to process each sample.
+    We can watch the progress of our task array using the 'squeue' command. Takes about 1:30 hours to process each sample.
 
     ```sbatch
     squeue -u $USER  # use your username
