@@ -19,11 +19,11 @@ mkdir -p ${outpath}
 
 cd ${outpath}
 
-wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.primary_assembly.genome.fa.gz
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.primary_assembly.genome.fa.gz GRCm38.primary_assembly.genome.fa.gz
 gunzip GRCm38.primary_assembly.genome.fa.gz
 FASTA="GRCm38.primary_assembly.genome.fa"
 
-wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.primary_assembly.annotation.gtf.gz
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.primary_assembly.annotation.gtf.gz gencode.vM25.primary_assembly.annotation.gtf.gz
 gunzip gencode.vM25.primary_assembly.annotation.gtf.gz
 
 
