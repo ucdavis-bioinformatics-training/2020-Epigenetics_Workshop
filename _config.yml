@@ -34,8 +34,16 @@ navigation:
   - title: High Performance Computing
     url: prereqs/CLI_Intro/cluster
 
-#  - heading: Data Reduction ChIPseq/ATACseq
-
+  - heading: Data Reduction ChIPseq/ATACseq
+  - title: Filetype Description
+    url: data_reduction/filetypes
+  - title: ChIP and ATAC project setup
+    url: 00-project_setup
+  - title: Preprocessing Reads
+    url: 01-preproc_htstream
+  - title: Mapping Reads
+    url: 02-alignment
+  
 #  - heading: Data Analysis ChIPseq/ATACseq
 
 #  - heading: Data Reduction Methylation

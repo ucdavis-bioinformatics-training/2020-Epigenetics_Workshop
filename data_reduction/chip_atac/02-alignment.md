@@ -219,7 +219,7 @@ Since the references are the same for both projects we'll just create the one di
 
     In the command, we are telling bwa to count reads using the genome referencde and input file pair.
 
-    You'll notice the program output the result to *stdout* this is nice because we can add additional processing afterwards, like sorting with samtools. But first lets take a look at the [sam/bam](./filetypes) format.
+    You'll notice the program output the result to *stdout* this is nice because we can add additional processing afterwards, like sorting with samtools. But first lets take a look at the [sam/bam](../filetypes) format.
 
     ```bash
     module load samtools

@@ -33,7 +33,7 @@ mkdir -p /share/workshop/epigenetics_workshop/$USER/chipseq_example
 
 ## Getting To Know Your Raw Data
 
-Lets first spend a minute talking about sequence read files and the [fastq](./filetypes) file format.
+Lets first spend a minute talking about sequence read files and the [fastq](../filetypes) file format.
 
 1. Now, take a look at the raw data directory.
 
