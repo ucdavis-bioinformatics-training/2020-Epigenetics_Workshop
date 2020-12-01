@@ -75,10 +75,6 @@ call="samtools flagstat -@ ${THREADS} ${output}_shifted_filtered_blacklisted.bam
 echo $call
 eval $call
 
-call="samtools stats -@ ${THREADS} ${output}_shifted_filtered_blacklisted.bam > ${output}_shifted_filtered_blacklisted.bam.stats"
-echo $call
-eval $call
-
 end=`date +%s`
 
 runtime=$((end-start))
