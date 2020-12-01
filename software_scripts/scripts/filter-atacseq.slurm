@@ -41,15 +41,15 @@ blacklist_bed=/share/biocore/workshops/2020_Epigenetics/Reference/mm10-blacklist
 
 call="alignmentSieve --ATACshift --bam ${bam} --outFile ${output}_shifted.bam"
 echo $call
-#eval $call
+eval $call
 
 call="samtools sort -m 768M --threads ${THREADS} -o ${output}_shifted_sort.bam ${output}_shifted.bam"
 echo $call
-#eval $call
+eval $call
 
 call="samtools index -@ ${THREADS} ${output}_shifted_sort.bam"
 echo $call
-#eval $call
+eval $call
 
 call="cat ${bam}.idxstats |  cut -f 1 | grep -v chrM | xargs samtools view -F 2048 -f 2 -q 30 -b ${output}_shifted_sort.bam | samtools sort -m 768M --threads ${THREADS} -o ${output}_shifted_filtered.bam -"
 echo $call
