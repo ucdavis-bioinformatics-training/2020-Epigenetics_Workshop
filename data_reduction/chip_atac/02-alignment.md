@@ -5,10 +5,10 @@ This document assumes [preproc htstream](./01-preproc_htstream.md) has been comp
 **IF** for some reason it didn't finish, is corrupted or you missed the session, you can copy over a completed copy
 
 ```bash
-cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/HTS_testing /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
-cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/01-HTS_Preproc /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
+#cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/HTS_testing /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
+#cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/01-HTS_Preproc /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
 
-cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/01-HTS_Preproc /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
+#cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/01-HTS_Preproc /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
 ```
 
 ## Alignment vs Assembly

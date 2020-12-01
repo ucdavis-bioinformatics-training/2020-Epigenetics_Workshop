@@ -184,6 +184,11 @@ Mouse samples, Methyl-CpG binding protein 2 (MeCP2) 2 Timepoints and 3 replicate
 |JLDY037K |	MeCP2 |	25_weeks |	rep3 |
 |JLDY037L |	Input_mix | none  |	rep1 |
 
+#### ChIP Controls
+
+* IgG control (isotype-matched control immunoglobulin): IgG is added instead of MeCP2 antibody but at the same concentration, to give an indication of the assay background.
+* Input control: A saved 5-10% of cell lysate before addition of MeCP2 to normalize for variations in starting material between consecutive experiments.
+
 ### ATAC Seq Dataset
 
 Mouse samples, C57 Strain, 3 treatments and 2 replicates.

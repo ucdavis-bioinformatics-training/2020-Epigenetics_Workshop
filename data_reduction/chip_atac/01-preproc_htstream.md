@@ -582,7 +582,7 @@ Reports such as Basespace for Illumina, are great ways to evaluate the run as a 
 If they didn't finish and you need to copy over my copy
 
 ```bash
-#cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/01-HTS_Preproc /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
+#cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/01-HTS_Preproc /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
 ```
 
 1. MultiQC QA/QC Summary of the json files.

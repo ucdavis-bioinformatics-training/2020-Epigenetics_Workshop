@@ -6,6 +6,7 @@ The primary file types you'll see related to DNA sequence analysis are:
 * [fastq](#fastq)
 * [gtf/gff](#Annotation-based-file-types)
 * [sam/bam/cram](#Alignment-based-file-types)
+* [bed](#Bed-file-types)
 
 ## Sequence based file types
 Sequence based files first started out as fasta with paired qual files (Sanger and 454), with Illumina and quality scores being used more, the fastq file became the default output from DNA sequencers. These days additional file types are being used, including fast5 by Oxford Nanopore and 'unmapped' bam files by Pacific Biosciences.
@@ -204,3 +205,41 @@ The sequence that was aligned. If hard clipping occurred, only the aligned porti
 
 **QUAL: segment quality scores**  
 The quality scores of the sequence that was aligned. If hard clipping occurred, only the aligned portion is represented, if soft clipping occurred, the original sequence is present.
+
+### Bed file type
+
+BED (Browser Extensible Data) format provides a flexible way to define the data lines that are displayed in an annotation track. BED lines have three required fields and nine additional optional fields. The number of fields per line must be consistent throughout any single set of data in an annotation track. The order of the optional fields is binding: lower-numbered fields must always be populated if higher-numbered fields are used.
+
+BED information should not be mixed as explained above (BED3 should not be mixed with BED4), rather additional column information must be filled for consistency, for example with a "." in some circumstances, if the field content is to be empty. BED fields in custom tracks can be whitespace-delimited or tab-delimited. Only some variations of BED types, such as bedDetail, require a tab character delimitation for the detail columns.
+
+Please note that only in custom tracks can the first lines of the file consist of header lines, which begin with the word "browser" or "track" to assist the browser in the display and interpretation of the lines of BED data following the headers. Such annotation track header lines are not permissible in downstream utilities such as bedToBigBed, which convert lines of BED text to indexed binary files.
+
+If your data set is BED-like, but it is very large (over 50MB) and you would like to keep it on your own server, you should use the bigBed data format.
+
+The first three required BED fields are:
+
+* chrom - The name of the chromosome (e.g. chr3, chrY, chr2_random) or scaffold (e.g. scaffold10671).
+* chromStart - The starting position of the feature in the chromosome or scaffold. The first base in a chromosome is numbered 0.
+* chromEnd - The ending position of the feature in the chromosome or scaffold. Features ends 1bp prior to chromEnd.
+
+The 9 additional optional BED fields are:
+
+* name - Defines the name of the BED line.
+
+* score - A score between 0 and 1000.
+
+* strand - Defines the strand. Either "." (=no strand) or "+" or "-".
+
+* thickStart - The starting position at which the feature is drawn thickly (for example, the start codon in gene displays).
+* thickEnd - The ending position at which the feature is drawn thickly (for example the stop codon in gene displays).
+* itemRgb - An RGB value of the form R,G,B (e.g. 255,0,0).
+* blockCount - The number of blocks (exons) in the BED line.
+* blockSizes - A comma-separated list of the block sizes. The number of items in this list should correspond to blockCount.
+* blockStarts - A comma-separated list of block starts. All of the blockStart positions should be calculated relative to chromStart. The number of items in this list should correspond to blockCount.
+
+```
+chr10	0	3135400	High Signal Region
+chr10	3218900	3276600	Low Mappability
+chr10	3576900	3627700	Low Mappability
+chr10	4191100	4197600	Low Mappability
+```
