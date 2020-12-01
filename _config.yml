@@ -36,7 +36,7 @@ navigation:
 
   - heading: Data Reduction ChIPseq/ATACseq
   - title: Filetype Description
-    url: data_reduction/chip_atac/filetypes
+    url: data_reduction/filetypes
   - title: ChIP and ATAC project setup
     url: data_reduction/chip_atac/00-project_setup
   - title: Preprocessing Reads
