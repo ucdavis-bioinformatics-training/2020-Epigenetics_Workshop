@@ -115,7 +115,7 @@ Since the references are the same for both projects we'll just create the one di
     bwa
     ```
 
-1. We are going to use an aligner called ['BWA MEM'](https://arxiv.org/abs/1303.3997) to align the data, but first we need to index the genome. Lets pull down a slurm script to index the mouse GENCODE version of the genome.
+1. We are going to use an aligner called ['BWA MEM'](https://arxiv.org/abs/1303.3997) to align the data, but first we need to index the genome. Lets pull down the script [map_bwa.slurm](../../software_scripts/scripts/bwa_index.slurm) to index the mouse GENCODE version of the genome.
 
     ```bash
     wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/bwa_index.slurm bwa_index.slurm
@@ -313,7 +313,7 @@ Since the references are the same for both projects we'll just create the one di
 
 ## Running BWA on the ChIP experiment
 
-1. We can now run BWA across all samples on the real data using a SLURM script, [map_bwa.slurm](../software_scripts/scripts/map_bwa.slurm), that we should take a look at now.
+1. We can now run BWA across all samples on the real data using a SLURM script, [map_bwa.slurm](../../software_scripts/scripts/map_bwa.slurm), that we should take a look at now.
 
     ```bash
     cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
