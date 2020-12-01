@@ -165,6 +165,33 @@ mkdir 01-HTS_Preproc
 
 1. What are the differences between the 2 datasets???
 
-## A "dna peak assay" data reduction flowchart
+## A Peak Based Assay Data Reduction Flowchart
 
 <img src="ChIP_ATAC_flow.png" alt="chip_atac_flow" width="80%" style="border:5px solid #ADD8E6;"/>
+
+### ChIP Seq Dataset
+
+Mouse samples, Methyl-CpG binding protein 2 (MeCP2) 2 Timepoints and 3 replicates.  
+
+| Sample | Protein | Timepoint | Rep
+| :----- | :----- | :----- | :-----
+|JLDY037E |	MeCP2 |	10_weeks |	rep1 |
+|JLDY037F |	MeCP2 |	10_weeks |	rep2 |
+|JLDY037G |	MeCP2 |	10_weeks |	rep3 |
+|JLDY037I |	MeCP2 |	25_weeks |	rep1 |
+|JLDY037J |	MeCP2 |	25_weeks |	rep2 |
+|JLDY037K |	MeCP2 |	25_weeks |	rep3 |
+|JLDY037L |	Input_mix | all  |	rep1 |
+
+### ATAC Seq Dataset
+
+Mouse samples, C57 Strain, 3 treatments and 2 replicates.
+
+| Sample | Strain | Treament | Rep
+| :----- | :----- | :----- | :-----
+|JLAC003A |	C57	control |	rep1 |
+|JLAC003B |	C57	single_treatment |	rep1 |
+|JLAC003C |	C57	double_treatment |	rep1 |
+|JLAC004D |	C57	control |	rep2 |
+|JLAC004E |	C57	single_treatment |	rep2 |
+|JLAC004F |	C57	double_treatment |	rep2 |
