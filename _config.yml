@@ -36,14 +36,14 @@ navigation:
 
   - heading: Data Reduction ChIPseq/ATACseq
   - title: Filetype Description
-    url: data_reduction/filetypes
+    url: data_reduction/chip_atac/filetypes
   - title: ChIP and ATAC project setup
-    url: 00-project_setup
+    url: data_reduction/chip_atac/00-project_setup
   - title: Preprocessing Reads
-    url: 01-preproc_htstream
+    url: data_reduction/chip_atac/01-preproc_htstream
   - title: Mapping Reads
-    url: 02-alignment
-  
+    url: data_reduction/chip_atac/02-alignment
+
 #  - heading: Data Analysis ChIPseq/ATACseq
 
 #  - heading: Data Reduction Methylation
