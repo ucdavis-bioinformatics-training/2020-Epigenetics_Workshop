@@ -407,7 +407,7 @@ Note the patterns:
 
 ## Run HTStream on the ChIPSeq Project.
 
-We can now run the preprocessing routine across all samples on the real data using a SLURM script, [hts_preproc.slurm](../software_scripts/scripts/hts_preproc.slurm), that we should take a look at now.
+We can now run the preprocessing routine across all samples on the real data using a SLURM script, [hts_preproc.slurm](../../software_scripts/scripts/hts_preproc.slurm), that we should take a look at now.
 
 ```bash
 cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
