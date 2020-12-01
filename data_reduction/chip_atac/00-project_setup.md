@@ -175,13 +175,14 @@ Mouse samples, Methyl-CpG binding protein 2 (MeCP2) 2 Timepoints and 3 replicate
 
 | Sample | Protein | Timepoint | Rep
 | :----- | :----- | :----- | :-----
+|JLDY037E |	Igg |	none |	rep1 |
 |JLDY037E |	MeCP2 |	10_weeks |	rep1 |
 |JLDY037F |	MeCP2 |	10_weeks |	rep2 |
 |JLDY037G |	MeCP2 |	10_weeks |	rep3 |
 |JLDY037I |	MeCP2 |	25_weeks |	rep1 |
 |JLDY037J |	MeCP2 |	25_weeks |	rep2 |
 |JLDY037K |	MeCP2 |	25_weeks |	rep3 |
-|JLDY037L |	Input_mix | all  |	rep1 |
+|JLDY037L |	Input_mix | none  |	rep1 |
 
 ### ATAC Seq Dataset
 
