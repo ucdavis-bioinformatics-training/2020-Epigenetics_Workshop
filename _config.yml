@@ -43,6 +43,10 @@ navigation:
     url: data_reduction/chip_atac/01-preproc_htstream
   - title: Mapping Reads
     url: data_reduction/chip_atac/02-alignment
+  - title: Filtering Reads
+    url: data_reduction/chip_atac/03-filter
+  - title: Peak Call with MACS2
+    url: data_reduction/chip_atac/04-peaks
 
 #  - heading: Data Analysis ChIPseq/ATACseq
 
