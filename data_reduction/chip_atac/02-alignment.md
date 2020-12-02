@@ -433,7 +433,7 @@ multiqc -i ChIPseq-mapping-report -o 02-BWA-ChIPseq-report ./02-BWA
 
 Transfer ChIPseq-mapping-report_multiqc_report.html and ATACseq-mapping-report_multiqc_report.html to your computer and open it in a web browser.
 
-Or in case of emergency, download this copy: [ChIPseq-mapping-report_multiqc_report.html](ChIPseq-mapping-report_multiqc_report.html) and [HTSMultiQC-mapping-report_multiqc_report.html](ATACseq-mapping-report_multiqc_report.html) for the ATACseq
+Or in case of emergency, download this copy: [ChIPseq-mapping-report_multiqc_report.html](ChIPseq-mapping-report_multiqc_report.html) and [ATACseq-mapping-report_multiqc_report.html](ATACseq-mapping-report_multiqc_report.html) for the ATACseq
 
 
 

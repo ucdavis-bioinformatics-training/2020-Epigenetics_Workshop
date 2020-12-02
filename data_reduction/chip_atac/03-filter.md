@@ -379,4 +379,25 @@ multiqc -i ChIPseq-filter-report -o 03-Filter-ChIPseq-report ./03-Filter
 
 Transfer ChIPseq-filter-report_multiqc_report.html and ATACseq-filter-report_multiqc_report.html to your computer and open it in a web browser.
 
-Or in case of emergency, download this copy: [ChIPseq-filter-report_multiqc_report.html](ChIPseq-filter-report_multiqc_report.html) and [HTSMultiQC-filter-report_multiqc_report.html](ATACseq-filter-report_multiqc_report.html) for the ATACseq
+Or in case of emergency, download this copy: [ChIPseq-filter-report_multiqc_report.html](ChIPseq-filter-report_multiqc_report.html) and [ATACseq-filter-report_multiqc_report.html](ATACseq-filter-report_multiqc_report.html) for the ATACseq
+
+### ATAC Fragment Size distributions
+
+We can also produce the fragment size distributions for ATACseq and check for the expected periodicity.
+
+We'll do this using the ATACseqQC package in R. For now lets just use my installation.
+
+```r
+require(ATACseqQC, lib.loc="/share/workshop/epigenetics_workshop/msettles/r_lib")
+bams <-  dir("03-Filter",pattern="_shifted_filtered_blacklisted.bam$",recursive=T, full.names=T)
+bams.labels <- gsub(".bam", "", basename(bams))
+
+ pdf("ATAC_histograms.pdf")
+ fragSize <- fragSizeDist(bams, bams.labels)
+ dev.off()
+ ```
+
+
+ Transfer ATAC_histograms.pdf to your computer and open it.
+
+ Or, download this copy: [ATAC_histograms.pdf](ATAC_histograms.pdf)

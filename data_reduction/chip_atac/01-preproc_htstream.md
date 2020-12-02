@@ -601,7 +601,7 @@ multiqc -i ChIPseq-cleaning-report -o 01-HTS-ChIPseq-report ./01-HTS_Preproc
 
 Transfer ChIPseq-cleaning-report_multiqc_report.html and ATACseq-cleaning-report_multiqc_report.html to your computer and open it in a web browser.
 
-Or in case of emergency, download this copy: [ChIPseq-cleaning-report_multiqc_report.html](ChIPseq-cleaning-report_multiqc_report.html) and [HTSMultiQC-cleaning-report_multiqc_report.html](ATACseq-cleaning-report_multiqc_report.html) for the ATACseq
+Or in case of emergency, download this copy: [ChIPseq-cleaning-report_multiqc_report.html](ChIPseq-cleaning-report_multiqc_report.html) and [ATACseq-cleaning-report_multiqc_report.html](ATACseq-cleaning-report_multiqc_report.html) for the ATACseq
 
 **Questions**
 * *Any problematic samples?*
