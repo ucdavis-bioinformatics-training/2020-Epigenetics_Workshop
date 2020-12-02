@@ -89,7 +89,7 @@ Technical artifacts should be considered during counting
 <img src="alignment_figures/alignment_figure4.jpg" alt="alignment_figure4" width="50%"/>  
 *From https://www.biostars.org/p/106291/*
 
-## Indexing a Reference sequence and annotation
+## Indexing a Reference sequence
 
 1. First lets make sure we are where we are supposed to be and that the References directory is available.
 
@@ -180,8 +180,6 @@ Since the references are the same for both projects we'll just create the one di
     ```bash
     #ln -s /share/biocore/workshops/2020_Epigenetics/Reference/GRCm38.primary_assembly.genome.fa* /share/workshop/epigenetics_workshop/$USER/References/.
     ```
-
-1. Now do the same for the ATACseq experiment
 
 ## Alignments
 
