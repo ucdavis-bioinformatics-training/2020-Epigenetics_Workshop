@@ -3,8 +3,8 @@
 #SBATCH --job-name=filter-atac # Job name
 #SBATCH --nodes=1
 #SBATCH --ntasks=1 # Number of cores
-#SBATCH --mem=16000 # Memory pool for all cores (see also --mem-per-cpu)
-#SBATCH --time=6
+#SBATCH --mem=4000 # Memory pool for all cores (see also --mem-per-cpu)
+#SBATCH --time=6:00:00
 #SBATCH --array=1-6
 #SBATCH --partition=production # Partition to submit to
 #SBATCH --account=epigenetics # cluster account to use for the job

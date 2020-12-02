@@ -106,7 +106,7 @@ To perfom these tasks we are going to use samtools and bedtools utilities.
     #SBATCH --nodes=1
     #SBATCH --ntasks=1 # Number of cores
     #SBATCH --mem=4000 # Memory pool for all cores (see also --mem-per-cpu)
-    #SBATCH --time=2
+    #SBATCH --time=6:00:00
     #SBATCH --array=1-8
     #SBATCH --partition=production # Partition to submit to
     #SBATCH --account=epigenetics # cluster account to use for the job
@@ -252,7 +252,7 @@ samtools view exclude_chrM_shifted.bam | head -n 2
     #SBATCH --nodes=1
     #SBATCH --ntasks=1 # Number of cores
     #SBATCH --mem=16000 # Memory pool for all cores (see also --mem-per-cpu)
-    #SBATCH --time=6
+    #SBATCH --time=6:00:00
     #SBATCH --array=1-6
     #SBATCH --partition=production # Partition to submit to
     #SBATCH --account=epigenetics # cluster account to use for the job
