@@ -49,15 +49,15 @@ To perfom these tasks we are going to use samtools and bedtools utilities.
 
     To see what it did, lets use samtools flagstat before and after.
 
-    **Questions**
-    1.  Which paremeter removed multimappers?
-    2.  Which *keeps* only proper pairs
-    3.  Which *removes* secondary alignments.
-
     ```bash
     samtools flagstat JLDY037E.streamed.bam
     samtools flagstat JLDY037E.streamed_filtered.bam
     ```
+
+    **Questions**
+    1.  Which paremeter removed multimappers?
+    2.  Which *keeps* only proper pairs
+    3.  Which *removes* secondary alignments.
 
 
 2. Now lets see how to screen out the blasklisted regions.
@@ -205,12 +205,42 @@ To perfom these tasks we are going to use samtools and bedtools utilities.
 We will perform the same filters as we did with the ChIP Seq experiment with 2 additional features:
 
 * Remove organelles genomes (Mitochondrial, Chloroplasts).The organelle genomes are more accessible due to the lack of chromatin packaging and are not interesting.
+
+We'll remove the MT reads by selecting all chromosomes *NOT* MT using the samtools line
+
+```
+module load samtools
+cd /share/workshop/epigenetics_workshop/$USER/atacseq_example
+cat 02-BWA/JLAC003A/JLAC003A_bwa.bam.idxstats
+cat 02-BWA/JLAC003A/JLAC003A_bwa.bam.idxstats | cut -f 1 | grep -v chrM | xargs samtools view -b  02-BWA/JLAC003A/JLAC003A_bwa.bam -o exclude_chrM.bam
+samtools idxstats exclude_chrM.bam
+```
+
+*Question*
+1. How many Mitochondrial reads were there before the screen?
+2. How many after?
+3. What is the xargs command?
+4. Break this command down what does "cat 02-BWA/JLAC003A/JLAC003A_bwa.bam.idxstats | cut -f 1 | grep -v chrM" produce?
+
 * Perform a read shift for ATACseq. In order to achieve base-pair resolution for TF footprint and motif-related analyses. Reads should be shifted + 4 bp for the positive strand reads and − 5 bp for negative strand reads, to account for the 9-bp duplication created by DNA repair of the nick by Tn5 transposase.
+
+We'll use the Deeptools subapplication alignmentSieve mode --ATACshift to perform this.
+
+```
+module load samtools
+module load deeptools
+cd /share/workshop/epigenetics_workshop/$USER/atacseq_example
+samtools view exclude_chrM.bam | head -n 2 # first read pair
+samtools index exclude_chrM.bam
+alignmentSieve --ATACshift --bam exclude_chrM.bam --outFile exclude_chrM_shifted.bam
+samtools view exclude_chrM_shifted.bam | head -n 2
+```
+
 
 1. We can now run our filtering across all samples on the real data using a SLURM script, [filter-atacseq.slurm](../../software_scripts/scripts/filter-atacseq.slurm), that we should take a look at now.
 
     ```bash
-    cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
+    cd /share/workshop/epigenetics_workshop/$USER/atacseq_example  # We'll run this from the main directory
 
     wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/filter-atacseq.slurm filter-atacseq.slurm
     less filter-atacseq.slurm
