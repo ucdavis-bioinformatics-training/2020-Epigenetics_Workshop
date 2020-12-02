@@ -199,7 +199,7 @@ To perfom these tasks we are going to use samtools and bedtools utilities.
     squeue -u $USER  # use your username
     ```
 
-##. Now do the same for the ATACseq experiment.
+## Now do the same for the ATACseq experiment.
 
 We will perform the same filters as we did with the ChIP Seq experiment with 2 additional features:
 
@@ -207,6 +207,7 @@ We will perform the same filters as we did with the ChIP Seq experiment with 2 a
         The organelle genomes are more accessible due to the lack of chromatin packaging and are not interesting.
     1. Perform a read shift for ATACseq.
         In order to achieve base-pair resolution for TF footprint and motif-related analyses. Reads should be shifted + 4 bp for the positive strand reads and − 5 bp for negative strand reads, to account for the 9-bp duplication created by DNA repair of the nick by Tn5 transposase.
+
 1. We can now run our filtering across all samples on the real data using a SLURM script, [filter-atacseq.slurm](../../software_scripts/scripts/filter-atacseq.slurm), that we should take a look at now.
 
     ```bash
@@ -354,4 +355,4 @@ Or in case of emergency, download this copy: [ChIPseq-filter-report_multiqc_repo
 
 **TODO**
 
-1. Download a samples final bam file for both the ChIPseq and ATACseq experiment and load into the WEB IGV viewer.
+1. Download a sample's final bam file for both the ChIPseq and ATACseq experiment and load into the WEB IGV viewer, explore.
