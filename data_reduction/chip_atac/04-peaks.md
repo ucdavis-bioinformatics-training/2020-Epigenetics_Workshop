@@ -9,8 +9,103 @@ This document assumes [filtering of samples](./03-filter.md) has been completed.
 #cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/03-Filter /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
 #cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/03-Filter /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
 ```
+## Model-based Analysis of ChIP-Seq (MACS2)
+MACS2 is a tool for identifying "Peaks" in such data as ChIPseq and ATACseq. MACS captures the influence of genome complexity to evaluate the significance of enriched regions.
 
-# Peak Calling with MACS2 for ChIPseq
+1. First lets get ready to run MACS2 and look at the help documentation. We'll save these results into the folder macs_test.
+
+    ```bash
+    cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
+
+    module load macs2
+    mkdir macs_test
+    ```
+
+    *Questions*
+    1. What version of MACS2 is this? Is it the most current version?
+    1. What parameters are required.
+
+2. Next lets try and run MACS again the input sample on a test sample.
+
+    Here the option -t specified the "test" sample (JLDY037G) and -c the "control" sample (JLDYO37L aka "Input").
+
+    ```bash
+    macs2 callpeak  -t 03-Filter/JLDY037G/JLDY037G_filtered_blacklisted.bam -c 03-Filter/JLDY037L/JLDY037L_filtered_blacklisted.bam -f BAMPE  -n macs_test/JLDY037G_input  -g mm  --keep-dup all
+    ```
+
+    *Questions*
+    1. What does the -g and --keep-dup parameters do?
+    2. How many files did this command produce.
+
+    Lets count the number of peaks we found.
+
+    ```bash
+    wc -l macs_test/JLDY037G_input_peaks.narrowPeak
+    ```
+
+    **Spoiler Alert, we get Zero peaks.**
+
+    *Questions*
+    1. Go back through our QA/QC, how did this sample look?
+    2. What might be a possible explaination for this?
+
+1. Lets do the same, but this time with the IGG sample (JLDY037L) as control.
+
+    ```bash
+    macs2 callpeak  -t 03-Filter/JLDY037G/JLDY037G_filtered_blacklisted.bam -c 03-Filter/JLDY037L/JLDY037L_filtered_blacklisted.bam -f BAMPE  -n macs_test/JLDY037G_igg  -g mm  --keep-dup all
+    ```
+
+    Lets count the number of peaks we found.
+
+    ```bash
+    wc -l macs_test/JLDY037G_igg_peaks.narrowPeak
+    ```
+
+    **Spoiler Alert, we get Zero peaks.**
+    *Questions*
+    1. Go back through our QA/QC, how did this sample look?
+    2. What might be a possible explaination for this?
+
+1. Lets do the same again, but this time with the raw IGG sample (JLDY037L) as control. I mapped the raw fastq data for the IGG sample, so no read processing or filtering.
+
+    ```bash
+    macs2 callpeak  -t 03-Filter/JLDY037G/JLDY037G_filtered_blacklisted.bam -c /share/biocore/workshops/2020_Epigenetics/ChIPseq/01-BWA-INIT/JLDY037D/JLDY037D_bwa.bam -f BAMPE  -n macs_test/JLDY037G_raw_igg  -g mm  --keep-dup all
+    ```
+
+    Lets count the number of peaks we found.
+
+    ```bash
+    wc -l macs_test/JLDY037G_raw_igg_peaks.narrowPeak
+    ```
+
+    **Spoiler Alert, we get peaks. :)**
+    *Questions*
+    1. How many peaks do we get?
+    1. What is the difference between processed and raw IGG Bams?
+    1. Given the 3 results above, what might be a possible explaination for the first 2 failures in identifying any peaks?
+    1. Compare (line counts) the narrowPeak file to the bed file produced. Look at the first few lines of each file, whats a difference (range wise)?
+    1. Take a look at the xls file (Its not excel).
+
+1. OK so, do we need a control??
+
+    ```bash
+    macs2 callpeak  -t 03-Filter/JLDY037G/JLDY037G_filtered_blacklisted.bam -f BAMPE  -n macs_test/JLDY037G_noinput -g mm  --keep-dup all
+    ```
+    Lets count the number of peaks we found.
+
+    ```bash
+    wc -l macs_test/JLDY037G_noinput_peaks.narrowPeak
+    ```
+
+    **Spoiler Alert, we get peaks. :)**
+    *Questions*
+    1. How many peaks do we get?
+    1. Which run produced the *"most"* peaks?
+    1. Ok Given the 4 results above, what should we do?
+
+
+
+## Peak Calling with MACS2 for ChIPseq
 
 
 1. We can now run MACS2 Peak calling across all samples on the real data using a SLURM script, [macs2-chipseq.slurm](../../software_scripts/scripts/macs2-chipseq.slurm), that we should take a look at now.

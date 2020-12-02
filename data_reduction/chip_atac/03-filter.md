@@ -393,7 +393,7 @@ R
 ```
 And then in R
 
-    ```r
+    ```
     require(ATACseqQC, lib.loc="/share/workshop/epigenetics_workshop/msettles/r_lib")
     bams <-  dir("03-Filter",pattern="_shifted_filtered_blacklisted.bam$",recursive=T, full.names=T)
     bams.labels <- gsub(".bam", "", basename(bams))
