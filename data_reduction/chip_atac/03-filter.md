@@ -18,7 +18,8 @@ For both datasets we are going to filter out all alignments before peak calling.
 
 1. Filter out all secondary alignements (produce by BWA MEM).
 2. Filter out any **not** properly paired reads.
-    <img src="filter_figures/filter_figure1.png" alt="filtered_figure1" width="80%"/>
+    <img src="filter_figures/filter_figure1.png" alt="filtered_figure1" width="40%"/>
+
     You would **not** use this filter if you had SE reads.
 3. Filter out any alignments whos mapping quality is < 30 (aka multimappers or misaligned).
 
@@ -349,8 +350,3 @@ multiqc -i ChIPseq-filter-report -o 03-Filter-ChIPseq-report ./03-Filter
 Transfer ChIPseq-filter-report_multiqc_report.html and ATACseq-filter-report_multiqc_report.html to your computer and open it in a web browser.
 
 Or in case of emergency, download this copy: [ChIPseq-filter-report_multiqc_report.html](ChIPseq-filter-report_multiqc_report.html) and [HTSMultiQC-filter-report_multiqc_report.html](ATACseq-filter-report_multiqc_report.html) for the ATACseq
-
-
-**TODO**
-
-1. Download a sample's final bam file for both the ChIPseq and ATACseq experiment and load into the WEB IGV viewer, explore.
