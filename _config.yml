@@ -54,7 +54,7 @@ navigation:
   - title: Introduction to WGBS
     url: https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/epigenetics/WGBS.pdf
   - title: WGBS hands-on
-    url: WGBS/WGBS.md
+    url: WGBS/WGBS
 
   - heading: ETC
   - title: Closing thoughts
