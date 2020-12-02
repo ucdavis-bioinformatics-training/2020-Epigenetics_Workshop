@@ -1,0 +1,168 @@
+---
+title: "WGBS Data Analysis"
+output:
+  html_notebook:
+#   code_folding="hide"
+  html_document:
+#   code_folding="hide"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+```
+
+```{r, include = F}
+library(DSS)
+library(bsseq)
+library(gdata)
+library(dplyr)
+library(kableExtra)
+library(ggplot2)
+library(knitr)
+```
+
+```{r echo=FALSE}
+colFmt = function(x,color){
+  outputFormat = opts_knit$get("rmarkdown.pandoc.to")
+  if(outputFormat == 'latex')
+    paste("\\textcolor{",color,"}{",x,"}",sep="")
+  else if(outputFormat == 'html')
+    paste("<font color='",color,"'>",x,"</font>",sep="")
+  else
+    x
+}
+```
+
+
+### Preprocessing
+
+```{r echo=FALSE}
+samples <- read.table(file="../scripts/allsamples.txt", sep="\t", header=F, stringsAsFactors=F)$V1
+
+#dat.list <- vector(mode = "list", length = length(samples))
+
+#for (i in 1:length(samples)){
+#        dat.list[[i]] <- read.table(paste0("../04-Methylation/", samples[i], ".CpG.counts.txt"), header=F, col.names=c("chr", "pos", "N", "X"))
+#}
+
+
+
+#BSobj <- makeBSseqData(dat.list, samples)
+#save(BSobj, file="BSobj.RData")
+load("BSobj.RData")
+```
+
+<br>
+The original data included `r dim(BSobj)[1]` CpG sites across all samples.
+
+
+```{r echo=FALSE}
+chr.use <- paste0("chr", c(1:22, "M", "X", "Y"))
+dat <- chrSelectBSseq(BSobj, seqnames= chr.use, order=T)
+```
+
+<br>
+CpG sites from unplaced contigs were removed, leaving `r dim(dat)[1]` CpG sites.
+<br>
+
+Multidimensional scaling (MDS) plot of raw methylation data.
+<br>
+
+
+```{r echo=FALSE}
+stage <- c(rep("3M", 3), rep("24M", 3))
+pdata <- data.frame(Samples=samples, EM.stage=stage, stringsAsFactors=F)
+pdata$EM.stage <- factor(pdata$EM.stage, levels=c("3M", "24M"))
+idx <- match(samples, pdata$Samples)
+pdata <- pdata[idx,]
+
+pchs <- ifelse(pdata$EM.stage == "3M", 15, 16)
+#
+pct.meth <- getMeth(dat, type = "raw")
+limma::plotMDS(asin(pct.meth), col = "blue", pch = pchs)
+legend("bottomright", title = "EM.stage", legend = levels(pdata$EM.stage), pch = unique(pchs), text.font = 0.8)
+
+```
+
+<br>
+
+### Differential methylation analyses
+Differential methylation analyses were conducted in [DSS](https://www.bioconductor.org/packages/release/bioc/manuals/DSS/man/DSS.pdf) bioconductor package.
+
+<br>
+
+##### Comparison EM.24M vs EM.3M
+Wald test was used.
+
+#### Output files include the following:
+
+* mu1, mu2: group means
+
+* diff, diff.se: differece between group means and the standard error of differences
+
+* stat: hypothesis test statistics (Wald test)
+
+* phi1, phi2: dispersions
+
+* pvals: Raw p-value from test that the methylation difference differs from 0
+
+* fdrs: Benjamini-Hochberg false discovery rate (FDR) adjusted p-value
+
+
+<br>
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+
+#dmlTest <- DMLtest(BSobj, group1=samples[1:3], group2=samples[4:6], smoothing=TRUE)
+#save(dm, file="DML.RData")
+load("DML.RData")
+
+#
+dmls <- callDML(dmlTest, p.threshold=1.0)
+write.table(dmls, file="Differential_methylation_CpG_EM24Mvs3M.txt", sep="\t", col.names=T, row.names=F, quote=F)
+
+```
+
+<br>
+
+
+```{r echo = FALSE}
+n <- ncol(dmls) - 1
+fill <- rep(" ", n)
+header1 <- n + 1
+names(header1) <- paste0("Number of differentially methylated CpGs with FDR adjusted P < 0.05 = ", length(which(dmls$fdr < 0.05)))
+kable(dmls[1:500,], align = 'c', row.names=F) %>%
+  add_header_above(header1, align = 'l') %>%
+  add_header_above(header = c("Top 500 CpG sites" = 1:3, fill), font_size = "larger", bold = T, align = "l") %>%
+  kable_styling(bootstrap_options = c("hover", "condensed", "responsive"), full_width = T) %>%
+  scroll_box(height = "500px")
+```
+
+<br>
+
+```{r echo = FALSE}
+# DMR
+dmrs <- callDMR(dmlTest, delta=0.1, p.threshold=0.01)
+write.table(dmrs, file="Differential_methylation_regions_EM24Mvs3M.txt", sep="\t", col.names=T, row.names=F, quote=F)
+```
+
+```{r echo = FALSE}
+n <- ncol(dmrs) - 1
+fill <- rep(" ", n)
+header1 <- n + 1
+names(header1) <- paste0("Number of differentially methylated regions = ", nrow(dmrs))
+kable(dmrs, align = 'c', row.names=F) %>%
+  add_header_above(header1, align = 'l') %>%
+  add_header_above(header = c("DMRs" = 1, fill), font_size = "larger", bold = T, align = "l") %>%
+  kable_styling(bootstrap_options = c("hover", "condensed", "responsive"), full_width = T) %>%
+  scroll_box(height = "500px")
+```
+
+
+<br>
+
+### R session information
+```{r}
+sessionInfo()
+```
+
