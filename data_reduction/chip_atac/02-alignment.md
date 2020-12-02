@@ -118,7 +118,7 @@ Since the references are the same for both projects we'll just create the one di
 1. We are going to use an aligner called ['BWA MEM'](https://arxiv.org/abs/1303.3997) to align the data, but first we need to index the genome. Lets pull down the script [map_bwa.slurm](../../software_scripts/scripts/bwa_index.slurm) to index the mouse GENCODE version of the genome.
 
     ```bash
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/bwa_index.slurm bwa_index.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/bwa_index.slurm -O bwa_index.slurm
     less bwa_index.slurm
     ```
 
@@ -143,11 +143,11 @@ Since the references are the same for both projects we'll just create the one di
 
     cd ${outpath}
 
-    wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.primary_assembly.genome.fa.gz GRCm38.primary_assembly.genome.fa.gz
+    wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.primary_assembly.genome.fa.gz -O GRCm38.primary_assembly.genome.fa.gz
     gunzip GRCm38.primary_assembly.genome.fa.gz
     FASTA="GRCm38.primary_assembly.genome.fa"
 
-    wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.primary_assembly.annotation.gtf.gz gencode.vM25.primary_assembly.annotation.gtf.gz
+    wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.primary_assembly.annotation.gtf.gz -O gencode.vM25.primary_assembly.annotation.gtf.gz
     gunzip gencode.vM25.primary_assembly.annotation.gtf.gz
 
 
@@ -315,7 +315,7 @@ Since the references are the same for both projects we'll just create the one di
 
     ```bash
     cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/map_bwa.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/map_bwa.slurm -O map_bwa.slurm
     less map_bwa.slurm
     ```
 
