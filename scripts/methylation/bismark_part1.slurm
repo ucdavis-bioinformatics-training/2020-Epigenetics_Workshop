@@ -5,8 +5,10 @@
 #SBATCH --ntasks=12 # Number of cores
 #SBATCH --mem=80000 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --partition=production # Partition to submit to
-#SBATCH --output=slurmout/bm-%A-%a.out # File to which STDOUT will be written
-#SBATCH --error=slurmout/bm-%A-%a.err # File to which STDERR will be written
+#SBATCH --account=epigenetics
+#SBATCH --reservation=epigenetics-workshop # reservation to submit to
+#SBATCH --output=slurmout/bm1-%A-%a.out # File to which STDOUT will be written
+#SBATCH --error=slurmout/bm1-%A-%a.err # File to which STDERR will be written
 
 start=`date +%s`
 hostname

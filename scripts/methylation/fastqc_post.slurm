@@ -5,6 +5,8 @@
 #SBATCH --ntasks=8 # Number of cores
 #SBATCH --mem=80000 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --partition=production # Partition to submit to
+#SBATCH --account=epigenetics
+#SBATCH --reservation=epigenetics-workshop # reservation to submit to
 #SBATCH --output=slurmout/fqcp-%A-%a.out # File to which STDOUT will be written
 #SBATCH --error=slurmout/fqcp-%A-%a.err # File to which STDERR will be written
 

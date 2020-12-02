@@ -1,17 +1,11 @@
 ---
 title: "WGBS Data Analysis"
 output:
-  html_notebook:
-#   code_folding="hide"
-  html_document:
-#   code_folding="hide"
+  html_notebook
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F)
-```
 
-```{r, include = F}
+```{r, include = T}
 library(DSS)
 library(bsseq)
 library(gdata)
@@ -36,27 +30,30 @@ colFmt = function(x,color){
 
 ### Preprocessing
 
-```{r echo=FALSE}
+```{r echo=TRUE}
+# get sample names
 samples <- read.table(file="../scripts/allsamples.txt", sep="\t", header=F, stringsAsFactors=F)$V1
 
-#dat.list <- vector(mode = "list", length = length(samples))
+# read in methylation data in tab delimited format: <chromosome> <position> <count total> <count methylated>
+dat.list <- vector(mode = "list", length = length(samples))
 
-#for (i in 1:length(samples)){
-#        dat.list[[i]] <- read.table(paste0("../04-Methylation/", samples[i], ".CpG.counts.txt"), header=F, col.names=c("chr", "pos", "N", "X"))
-#}
+for (i in 1:length(samples)){
+        dat.list[[i]] <- read.table(paste0("../04-Methylation/", samples[i], ".CpG.counts.txt"), header=F, col.names=c("chr", "pos", "N", "X"))
+}
 
 
-
-#BSobj <- makeBSseqData(dat.list, samples)
-#save(BSobj, file="BSobj.RData")
-load("BSobj.RData")
+# create BSseqData and save for future easy loading
+BSobj <- makeBSseqData(dat.list, samples)
+save(BSobj, file="BSobj.RData")
+#load("BSobj.RData")
 ```
 
 <br>
 The original data included `r dim(BSobj)[1]` CpG sites across all samples.
 
 
-```{r echo=FALSE}
+```{r echo=TRUE}
+# remove unplaced contigs from reference
 chr.use <- paste0("chr", c(1:22, "M", "X", "Y"))
 dat <- chrSelectBSseq(BSobj, seqnames= chr.use, order=T)
 ```
@@ -69,7 +66,8 @@ Multidimensional scaling (MDS) plot of raw methylation data.
 <br>
 
 
-```{r echo=FALSE}
+```{r echo=TRUE}
+# generate meta data from samples
 stage <- c(rep("3M", 3), rep("24M", 3))
 pdata <- data.frame(Samples=samples, EM.stage=stage, stringsAsFactors=F)
 pdata$EM.stage <- factor(pdata$EM.stage, levels=c("3M", "24M"))
@@ -78,6 +76,7 @@ pdata <- pdata[idx,]
 
 pchs <- ifelse(pdata$EM.stage == "3M", 15, 16)
 #
+# MDS plot of raw methylation percentages
 pct.meth <- getMeth(dat, type = "raw")
 limma::plotMDS(asin(pct.meth), col = "blue", pch = pchs)
 legend("bottomright", title = "EM.stage", legend = levels(pdata$EM.stage), pch = unique(pchs), text.font = 0.8)
@@ -112,14 +111,15 @@ Wald test was used.
 <br>
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# run test of differential methylation for each CpG site and save for future easy loading
+dmlTest <- DMLtest(BSobj, group1=samples[1:3], group2=samples[4:6], smoothing=TRUE)
+save(dmlTest, file="DML.RData")
+#load("DML.RData")
 
-#dmlTest <- DMLtest(BSobj, group1=samples[1:3], group2=samples[4:6], smoothing=TRUE)
-#save(dm, file="DML.RData")
-load("DML.RData")
-
-#
+# call differential methylated CpG
 dmls <- callDML(dmlTest, p.threshold=1.0)
-write.table(dmls, file="Differential_methylation_CpG_EM24Mvs3M.txt", sep="\t", col.names=T, row.names=F, quote=F)
+# write to file results
+write.table(dmls, file="Differential_methylation_CpG_24Mvs3M.txt", sep="\t", col.names=T, row.names=F, quote=F)
 
 ```
 
@@ -127,13 +127,15 @@ write.table(dmls, file="Differential_methylation_CpG_EM24Mvs3M.txt", sep="\t", c
 
 
 ```{r echo = FALSE}
-n <- ncol(dmls) - 1
-fill <- rep(" ", n)
-header1 <- n + 1
+# list the top 500 differentially methylated CpG sites (ordered by P values)
+n <- ncol(dmls)
+header1 <- n
 names(header1) <- paste0("Number of differentially methylated CpGs with FDR adjusted P < 0.05 = ", length(which(dmls$fdr < 0.05)))
+header2 <- n
+names(header2) <- "Top 500 CpG sites"
 kable(dmls[1:500,], align = 'c', row.names=F) %>%
   add_header_above(header1, align = 'l') %>%
-  add_header_above(header = c("Top 500 CpG sites" = 1:3, fill), font_size = "larger", bold = T, align = "l") %>%
+  add_header_above(header2, font_size = "larger", bold = T, align = "l") %>%
   kable_styling(bootstrap_options = c("hover", "condensed", "responsive"), full_width = T) %>%
   scroll_box(height = "500px")
 ```
@@ -141,21 +143,33 @@ kable(dmls[1:500,], align = 'c', row.names=F) %>%
 <br>
 
 ```{r echo = FALSE}
-# DMR
+# call differentially methylated regions (DMR)
 dmrs <- callDMR(dmlTest, delta=0.1, p.threshold=0.01)
-write.table(dmrs, file="Differential_methylation_regions_EM24Mvs3M.txt", sep="\t", col.names=T, row.names=F, quote=F)
+write.table(dmrs, file="Differential_methylation_regions_24Mvs3M.txt", sep="\t", col.names=T, row.names=F, quote=F)
 ```
 
 ```{r echo = FALSE}
-n <- ncol(dmrs) - 1
-fill <- rep(" ", n)
-header1 <- n + 1
+# list DMRs
+n <- ncol(dmrs)
+header1 <- n
 names(header1) <- paste0("Number of differentially methylated regions = ", nrow(dmrs))
+header2 <- n
+names(header2) <- "The list of DMRs:"
 kable(dmrs, align = 'c', row.names=F) %>%
   add_header_above(header1, align = 'l') %>%
-  add_header_above(header = c("DMRs" = 1, fill), font_size = "larger", bold = T, align = "l") %>%
+  add_header_above(header2, font_size = "larger", bold = T, align = "l") %>%
   kable_styling(bootstrap_options = c("hover", "condensed", "responsive"), full_width = T) %>%
   scroll_box(height = "500px")
+```
+
+<br>
+
+##### Visualization of individual DMR
+
+<br>
+
+```{r echo=FALSE}
+showOneDMR(dmrs[1,], BSobj)
 ```
 
 
