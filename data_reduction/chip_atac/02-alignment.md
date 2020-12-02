@@ -210,7 +210,7 @@ Since the references are the same for both projects we'll just create the one di
     ```bash
     module load bwa
     bwa mem -t 8 \
-       ../../Reference/GRCm38.primary_assembly.genome.fa \
+       ../../References/GRCm38.primary_assembly.genome.fa \
        JLDY037E.streamed_R1.fastq.gz \
        JLDY037E.streamed_R2.fastq.gz
     ```
@@ -222,7 +222,7 @@ Since the references are the same for both projects we'll just create the one di
     ```bash
     module load samtools
     bwa mem -t 8 \
-       ../Reference/GRCm38.primary_assembly.genome.fa \
+       ../../References/GRCm38.primary_assembly.genome.fa \
        JLDY037E.streamed_R1.fastq.gz \
        JLDY037E.streamed_R2.fastq.gz | samtools sort -o JLDY037E.streamed.bam -
     ```
