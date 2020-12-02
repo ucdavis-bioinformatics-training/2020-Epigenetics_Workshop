@@ -303,7 +303,7 @@ We will perform the same filters as we did with the ChIP Seq experiment with 2 a
 
     Again there are alot of things happening here:
     1.  We first setup the environment.
-    1.  Then we use 'alignmentSieve --ATACshift' to perform the ATAC shift.
+    1.  Then we use ['alignmentSieve --ATACshift'](https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html) to perform the ATAC shift.
     1.  samtools sort and index.
     1.  Then we use samtools to filter reads and sort (and the MT reads).
     1.  Intersect the blacklist and sort.
