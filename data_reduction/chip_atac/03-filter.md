@@ -7,10 +7,10 @@ This document assumes [mapping with bwa](./02-alignment.md) has been completed.
 ```bash
 #cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/HTS_testing /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
 #cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/02-BWA /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
-
 #cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/02-BWA /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
 ```
-## Filtering our alignments
+
+1. Purpose of filtering
 
 The purpose of filtering our alignments is primarily noise reduction. We want to remove alignements that are either suspect, misaligned and/or unwanted (Ex. Mitochondrial genome in ATACseq).
 
@@ -18,7 +18,7 @@ For both datasets we are going to filter out all alignments before peak calling.
 
 1. Filter out all secondary alignements (produce by BWA MEM).
 2. Filter out any **not** properly paired reads.
-    <img src="filtered_figures/filtered_figure1.png" alt="filtered_figure1" width="80%"/>
+    <img src="filter_figures/filter_figure1.png" alt="filtered_figure1" width="80%"/>
     You would **not** use this filter if you had SE reads.
 3. Filter out any alignments whos mapping quality is < 30 (aka multimappers or misaligned).
 
