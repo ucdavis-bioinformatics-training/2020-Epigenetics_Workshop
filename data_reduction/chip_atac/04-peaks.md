@@ -113,7 +113,7 @@ MACS2 is a tool for identifying "Peaks" in such data as ChIPseq and ATACseq. MAC
     ```bash
     cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
 
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/macs2-chipseq.slurm macs2-chipseq.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/macs2-chipseq.slurm -O macs2-chipseq.slurm
     less macs2-chipseq.slurm
     ```
 
@@ -187,7 +187,7 @@ MACS2 is a tool for identifying "Peaks" in such data as ChIPseq and ATACseq. MAC
     ```bash
     cd /share/workshop/epigenetics_workshop/$USER/atacseq_example  # We'll run this from the main directory
 
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/macs2-atacseq.slurm macs2-atac.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/macs2-atacseq.slurm -O macs2-atac.slurm
     less macs2-atacseq.slurm
     ```
 

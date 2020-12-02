@@ -31,7 +31,7 @@ First lets download and uncompress the blacklist to our References folder, then 
 
 ```bash
 cd /share/workshop/epigenetics_workshop/$USER/References
-wget https://github.com/Boyle-Lab/Blacklist/raw/master/lists/mm10-blacklist.v2.bed.gz mm10-blacklist.v2.bed.gz
+wget https://github.com/Boyle-Lab/Blacklist/raw/master/lists/mm10-blacklist.v2.bed.gz -O mm10-blacklist.v2.bed.gz
 gunzip mm10-blacklist.v2.bed.gz
 less mm10-blacklist.v2.bed
 ```
@@ -96,7 +96,7 @@ To perfom these tasks we are going to use samtools and bedtools utilities.
     ```bash
     cd /share/workshop/epigenetics_workshop/$USER/chipseq_example  # We'll run this from the main directory
 
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/filter-chipseq.slurm filter-chipseq.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/filter-chipseq.slurm -O filter-chipseq.slurm
     less filter-chipseq.slurm
     ```
 
@@ -242,7 +242,7 @@ samtools view exclude_chrM_shifted.bam | head -n 2
     ```bash
     cd /share/workshop/epigenetics_workshop/$USER/atacseq_example  # We'll run this from the main directory
 
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/filter-atacseq.slurm filter-atacseq.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/software_scripts/scripts/filter-atacseq.slurm -O filter-atacseq.slurm
     less filter-atacseq.slurm
     ```
 
