@@ -12,6 +12,22 @@ This document assumes [filtering of samples](./03-filter.md) has been completed.
 ## Model-based Analysis of ChIP-Seq (MACS2)
 MACS2 is a tool for identifying "Peaks" in such data as ChIPseq and ATACseq. MACS captures the influence of genome complexity to evaluate the significance of enriched regions.
 
+For ChIP-seq experiments, what we observe from the alignment files is a strand asymmetry with read densities on the +/- strand, centered around the binding site. The 5’ ends of the selected fragments will form groups on the positive- and negative-strand. The distributions of these groups are then assessed using statistical measures and compared against background (input or mock IP samples) to determine if the site of enrichment is likely to be a real binding site.
+
+<img src="peaks_figures/peaks_figure1.png" alt="peaks_figure1" width="60%"/>
+
+From [Wilbanks and Faccioti, PLoS One 2010](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0011471)
+
+
+1. Sliding a window of length 2 x bandwidth (= half of estimated sonication size) across genome and determine read counts
+2. Retain windows with counts > MFOLD (fold-enrichment of treatment/back-ground)
+3. PEAKS: probability of an enrichment being stronger than expected
+    *   H0: reads are randomly distributed throughout the genome following a Poisson distribution
+    *   Determine the background distribution (λ) by sliding a window of size 2x fragment size across the background to estimate the local coverage
+
+    <img src="peaks_figures/peaks_figure2.png" alt="peaks_figure1" width="60%"/>
+
+
 1. First lets get ready to run MACS2 and look at the help documentation. We'll save these results into the folder macs_test.
 
     ```bash
@@ -19,6 +35,7 @@ MACS2 is a tool for identifying "Peaks" in such data as ChIPseq and ATACseq. MAC
 
     module load macs2
     mkdir macs_test
+    macs2 callpeak -h
     ```
 
     *Questions*
@@ -85,6 +102,17 @@ MACS2 is a tool for identifying "Peaks" in such data as ChIPseq and ATACseq. MAC
     1. Given the 3 results above, what might be a possible explaination for the first 2 failures in identifying any peaks?
     1. Compare (line counts) the narrowPeak file to the bed file produced. Look at the first few lines of each file, whats a difference (range wise)?
     1. Take a look at the xls file (Its not excel).
+
+### MACS2 Output
+
+* sample_peaks.narrowPeak: BED6+4 format file which contains the peak locations together with peak summit, pvalue and qvalue.
+    A narrowPeak (.narrowPeak) file is used by the ENCODE project to provide called peaks of signal enrichment based on pooled, normalized (interpreted) data. It is a BED 6+4 format, which means the first 6 columns of a standard BED file with 4 additional fields:
+
+    <img src="peaks_figures/peaks_figure=3.png" alt="peaks_figure1" width="40%"/>
+
+* sample_peaks.xls: a tabular file which contains information about called peaks. Additional information includes pileup and fold enrichment
+* sample_summits.bed: peak summits locations for every peak. To find the motifs at the binding sites, this file is recommended
+
 
 1. OK so, do we need a control??
 
