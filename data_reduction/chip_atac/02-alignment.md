@@ -178,7 +178,7 @@ Since the references are the same for both projects we'll just create the one di
     **IF** For the sake of time, or for some reason it didn't finish, is corrupted, or you missed the session, you can **link** over a completed copy.
 
     ```bash
-    #cp -r /share/biocore/workshops/2020_Epigenetics/Reference/GRCm38.primary_assembly.genome.fa* /share/workshop/epigenetics_workshop/$USER/References/.
+    #ln -s /share/biocore/workshops/2020_Epigenetics/Reference/GRCm38.primary_assembly.genome.fa* /share/workshop/epigenetics_workshop/$USER/References/.
     ```
 
 ## Alignments
