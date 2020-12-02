@@ -387,16 +387,21 @@ We can also produce the fragment size distributions for ATACseq and check for th
 
 We'll do this using the ATACseqQC package in R. For now lets just use my installation.
 
-```r
-require(ATACseqQC, lib.loc="/share/workshop/epigenetics_workshop/msettles/r_lib")
-bams <-  dir("03-Filter",pattern="_shifted_filtered_blacklisted.bam$",recursive=T, full.names=T)
-bams.labels <- gsub(".bam", "", basename(bams))
+```bash
+module load R
+R
+```
+And then in R
 
- pdf("ATAC_histograms.pdf")
- fragSize <- fragSizeDist(bams, bams.labels)
- dev.off()
- ```
+    ```r
+    require(ATACseqQC, lib.loc="/share/workshop/epigenetics_workshop/msettles/r_lib")
+    bams <-  dir("03-Filter",pattern="_shifted_filtered_blacklisted.bam$",recursive=T, full.names=T)
+    bams.labels <- gsub(".bam", "", basename(bams))
 
+     pdf("ATAC_histograms.pdf")
+     fragSize <- fragSizeDist(bams, bams.labels)
+     dev.off()
+     ```
 
  Transfer ATAC_histograms.pdf to your computer and open it.
 
