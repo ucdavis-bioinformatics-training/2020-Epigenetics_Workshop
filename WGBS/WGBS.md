@@ -11,7 +11,7 @@ output:
 
 ![](wf.png)
 
-### QA/QC
+### Pre-alignment
 
 
 **1\.** Let's create the working directory and get the raw sequencing data and the reference genome. 
@@ -124,7 +124,7 @@ In the MultiQC report, "M-Bias" plot is one important metric to look carefully. 
     jobid=$(sbatch -J qms.${USER} --array=1-6 qualimap_single.slurm |cut -d' ' -f4 - )
     sbatch -J qmm.${USER} --dependency=afterok:${jobid} qualimap_multi.slurm
 
-This tool produces a very nice report on the coverage along the whole genome. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multisampleBamQcReport.html) is the one I created for the complete set of data. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/qualimapReport.html) is the report for a single sample.
+This tool produces a very nice report on the coverage along the whole genome. [Here](multisampleBamQcReport.html) is the one I created for the complete set of data. [Here](qualimapReport.html) is the report for a single sample.
 
 
 ---
@@ -162,7 +162,7 @@ Now we are ready to import the methylation data into DSS, but first we have to i
     module load R/4.0.1
     R CMD BATCH Rpackages.R
 
-Once all packages have been successfully installed, we are going to use [this script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/report.Rmd.txt) to carry out differential methylation analysis. 
+Once all packages have been successfully installed, we are going to use [this script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/report.Rmd) to carry out differential methylation analysis. 
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/
     mkdir 05-DM; cd 05-DM
@@ -170,18 +170,18 @@ Once all packages have been successfully installed, we are going to use [this sc
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/run.R .
     R CMD BATCH run.R
 
-[Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/report.nb.html) is the report I generated for the subsampled data. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/report.all.nb.html) is the report I generated for the full set of data.
+[Here](chr18.nb.html) is the report I generated for the subsampled data. [Here](report.nb.html) is the report I generated for the full set of data.
 
 After we got the list of differentially methylated regions, we can run [HOMER](http://homer.ucsd.edu/homer/index.html) to create functional annotation of the regions. HOMER also can do enrichment analysis using the annotation results. Because there is only one differential methylated region found using the subsampled data, we are going to copy my result using the full dataset and then run HOMER with it.
 
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/05-DM
-    cp /share/biocore/projects/Internal_Jessie_UCD/Workshops/Epigenetics/05-DML/Differential_methylation_regions_EM24Mvs3M.txt .
+    cp /share/biocore/projects/Internal_Jessie_UCD/Workshops/Epigenetics/05-DML/Differential_methylation_regions_24Mvs3M.txt .
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/homer.slurm .
     sbatch -J hm.${USER} homer.slurm
 
-[Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/anno.full.txt) is the annotation for the DMRs.
+[Here](anno.full.txt) is the annotation for the DMRs.
 
 
 ---
@@ -194,7 +194,7 @@ First, we are going to run "computeMatrix" from [deepTools](https://deeptools.re
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/deeptools.slurm .
     sbatch -J dt.${USER} deeptools.slurm
 
-In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/deeptools.slurm), we also run "plotHeatmap" from deepTools to generate a [plot](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/tss.png).
+In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/deeptools.slurm), we also run "plotHeatmap" from deepTools to generate a [plot](tss.expressed.png).
 
 As a part of running "computeMatrix" from deepTools, we obtained a file containing the methylation level information for the region of 2000bp around TSS for all genes in the two lists (expressed and not-expressed genes). We are going to use a R script to calculate the average levels at posiitons 2000bp around TSS and plot them.
 
@@ -203,7 +203,7 @@ As a part of running "computeMatrix" from deepTools, we obtained a file containi
     module load R/4.0.1
     R CMD BATCH plottss.R
 
-At the end, we got a [Methylation_TSS.pdf](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/Methylation_TSS.pdf) file.
+At the end, we got a [Methylation_TSS.pdf](Methylation_TSS.pdf) file.
 
 ---
 

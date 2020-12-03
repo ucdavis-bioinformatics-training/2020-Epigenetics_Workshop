@@ -46,7 +46,7 @@ module load bowtie2/2.4.2
 name=`head -n ${SLURM_ARRAY_TASK_ID} allsamples.txt | tail -1`
 
 # extract methylation information
-bismark_methylation_extractor -p --merge_non_CpG --gzip --no_overlap --no_header --mbias_off --comprehensive --bedgraph --output ${outP} --parallel 8 --buffer_size 145G --genome_folder $refP ${bamP}/${name}.input${name}_R1_001_bismark_bt2_pe.deduplicated.bam
+bismark_methylation_extractor -p --merge_non_CpG --gzip --no_overlap --no_header --mbias_off --comprehensive --bedgraph --output ${outP} --parallel 8 --buffer_size 70G --genome_folder $refP ${bamP}/${name}.input${name}_R1_001_bismark_bt2_pe.deduplicated.bam
 
 end=`date +%s`
 runtime=$((end - start ))
