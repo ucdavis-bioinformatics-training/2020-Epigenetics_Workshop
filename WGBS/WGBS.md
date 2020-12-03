@@ -162,7 +162,7 @@ Now we are ready to import the methylation data into DSS, but first we have to i
     module load R/4.0.1
     R CMD BATCH Rpackages.R
 
-Once all packages have been successfully installed, we are going to use [this script](report.Rmd) to carry out differential methylation analysis. 
+Once all packages have been successfully installed, we are going to use [this script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/report.Rmd) to carry out differential methylation analysis. 
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/
     mkdir 05-DM; cd 05-DM
