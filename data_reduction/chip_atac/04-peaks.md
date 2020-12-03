@@ -108,7 +108,7 @@ From [Wilbanks and Faccioti, PLoS One 2010](https://journals.plos.org/plosone/ar
 * sample_peaks.narrowPeak: BED6+4 format file which contains the peak locations together with peak summit, pvalue and qvalue.
     A narrowPeak (.narrowPeak) file is used by the ENCODE project to provide called peaks of signal enrichment based on pooled, normalized (interpreted) data. It is a BED 6+4 format, which means the first 6 columns of a standard BED file with 4 additional fields:
 
-    <img src="peaks_figures/peaks_figure=3.png" alt="peaks_figure1" width="40%"/>
+    <img src="peaks_figures/peaks_figure3.png" alt="peaks_figure1" width="40%"/>
 
 * sample_peaks.xls: a tabular file which contains information about called peaks. Additional information includes pileup and fold enrichment
 * sample_summits.bed: peak summits locations for every peak. To find the motifs at the binding sites, this file is recommended
