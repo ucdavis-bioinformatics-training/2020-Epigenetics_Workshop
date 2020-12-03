@@ -95,21 +95,22 @@ Now we are ready to map the qced reads to the reference genome. We use bismark w
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/bismark_part1.slurm .
     sbatch -J bm1.${USER} --array=1-6 bismark_part1.slurm
 
-In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/bismark_part1.slurm), the first step is to map the reads to the reference genome. The second step removes PCR duplicates among the reads. The third step produces methylation level information for us to check whether there are any position bias and decide whether additional "trimming" is necessary. The final step generates a report for each sample with the metrics on mapping, duplication rate and bias information. These reports can be downloaded to your laptop for viewing. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multiqc_bismark_report.html). However, it is more convenient to have the information for all samples in one report. So, we will take advantage of MultQC again to produce a report that includes the metrics for all samples for easy inspection. This can be achieved using the following steps.
+In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/bismark_part1.slurm), the first step is to map the reads to the reference genome. The second step removes PCR duplicates among the reads. The third step produces methylation level information for us to check whether there are any position bias and decide whether additional "trimming" is necessary. The final step generates a report for each sample with the metrics on mapping, duplication rate and bias information. These reports can be downloaded to your laptop for viewing [Here](bismark1.html). However, it is more convenient to have the information for all samples in one report. So, we will take advantage of MultQC again to produce a report that includes the metrics for all samples for easy inspection. This can be achieved using the following steps.
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/multiqc_bismark.slurm .
 
 In order to run MultiQC on the results of bismark, we are going to create a file that lists all of the relevant files and use it as input to MultiQC.
+
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/03-Bismark/*_PE_report.txt > input2.fofn
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/03-Bismark/*.deduplication_report.txt >> input2.fofn
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*.M-bias.txt >> input2.fofn
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*._splitting_report.txt >> input2.fofn
     sbatch -J mqb.${USER} multiqc_bismark.slurm
 
-Once the job finishes successfully, we can download the MultiQC report (inside 04-Methylation) to our laptop to take a look. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multiqc_bismark_all_report.html) is the one I generated. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multiqc_bismark_full_report.html) is the one I generated using the full set of data.
+Once the job finishes successfully, we can download the MultiQC report (inside 04-Methylation) to our laptop to take a look: [here](multiqc_bismark_report.html) is the one I generated. [Here](multiqc_bismark_full_report.html) is the one I generated using the full set of data.
 
-In the MultiQC report, "M-Bias" plot is one important metric to look carefully. If the methylation level is not more or less the same along the read position, then one should consider trimming more bases off. For example, I have generated a MultiQC report for mapping the raw sequencing reads without trimming. [The result](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/SRR9833662.1.bismark.raw.report.html) demonstrate one potential scenario.
+In the MultiQC report, "M-Bias" plot is one important metric to look carefully. If the methylation level is not more or less the same along the read position, then one should consider trimming more bases off. For example, I have generated a MultiQC report for mapping the raw sequencing reads without trimming. [The result](SRR9833662.1.bismark.raw.report.html) demonstrate one potential scenario.
 
 
 ---
