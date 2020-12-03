@@ -54,7 +54,7 @@ After the job has been executed successfully, you should have 6 html files in yo
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/multiqc_pre.slurm .
     sbatch -J mqc.${USER} multiqc_pre.slurm
 
-The script [multiqc_pre.slurm](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multiqc_pre.slurm) script will submit a job to run MultiQC based on the results from FastQC. Upon the successful execution of this script, one should have a subdirectory "multiqc_data" and one html file "multiqc_report.html" inside 011-Fastqc directory. Now we can download this html to our laptop to look at the report. It should look like [this](multiqc_report.html). The MultiQC report that I generated for the original sequencing data without subsampling is [here](multiqc_fulldata_report.html)
+The script [multiqc_pre.slurm](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multiqc_pre.slurm) script will submit a job to run MultiQC based on the results from FastQC. Upon the successful execution of this script, one should have a subdirectory "multiqc_data" and one html file "multiqc_report.html" inside 011-Fastqc directory. Now we can download this html to our laptop to look at the report. It should look like [this](multiqc_report.html). The MultiQC report that I generated for the original sequencing data without subsampling is [here](multiqc_pre_fulldata_report.html).
 
 ---
 
