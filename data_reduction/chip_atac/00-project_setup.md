@@ -195,11 +195,11 @@ Mouse samples, C57 Strain, 3 treatments and 2 replicates.
 
 | Sample | Strain | Treament | Rep
 | :----- | :----- | :----- | :-----
-|JLAC003A |	C57	control |	rep1 |
-|JLAC003B |	C57	single_treatment |	rep1 |
-|JLAC003C |	C57	double_treatment |	rep1 |
-|JLAC004D |	C57	control |	rep2 |
-|JLAC004E |	C57	single_treatment |	rep2 |
-|JLAC004F |	C57	double_treatment |	rep2 |
+|JLAC003A |	C57	| control |	rep1 |
+|JLAC003B |	C57	| single_treatment |	rep1 |
+|JLAC003C |	C57	| double_treatment |	rep1 |
+|JLAC004D |	C57	| control |	rep2 |
+|JLAC004E |	C57	| single_treatment |	rep2 |
+|JLAC004F |	C57	| double_treatment |	rep2 |
 
 [Vogel et al.](https://www.biorxiv.org/content/10.1101/2020.02.08.940296v1.full)

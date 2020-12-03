@@ -35,7 +35,7 @@ output=${outpath}/${sample}/${sample}
 THREADS=${SLURM_NTASKS}
 #THREADS=1
 
-blacklist_bed=/share/biocore/workshops/2020_Epigenetics/Reference/mm10-blacklist.v2.bed
+blacklist_bed=/share/workshop/epigenetics_workshop/msettles/References/mm10-blacklist.v2.bed
 
 call="samtools view -F 2048 -f 2 -q 30 -b ${bam} | samtools sort -m 768M --threads ${THREADS} -o ${output}_filtered.bam -"
 echo $call
