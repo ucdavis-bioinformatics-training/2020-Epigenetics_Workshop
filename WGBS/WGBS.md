@@ -11,7 +11,7 @@ output:
 
 ![](wf.png)
 
-### QA/QC
+### Pre-alignment
 
 
 **1\.** Let's create the working directory and get the raw sequencing data and the reference genome. 
