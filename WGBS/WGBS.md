@@ -73,7 +73,7 @@ After qc, one might want to run FastQC and MultiQC again (use [fastqc_pos.slurm]
     jobid=$(sbatch -J fqcp.${USER} --array=1-6 fastqc_post.slurm |cut -d' ' -f4 - )
     sbatch -J mqcp.${USER} --dependency=afterok:${jobid} multiqc_post.slurm
    
-After the jobs have been executed successfully, you should have a new directory 012-Fastqc inside your Methylation directory. The MultiQC report is [here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multiqc_post_report.html). The report for the full dataset is [here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multiqc_post_fulldata.html).
+After the jobs have been executed successfully, you should have a new directory 012-Fastqc inside your Methylation directory. The MultiQC report is [here](post_multiqc_report.html). The report for the full dataset is [here](multiqc_post_fulldata_report.html).
 
 ---
 
