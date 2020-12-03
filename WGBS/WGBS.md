@@ -29,7 +29,7 @@ Then, let's get the raw data. We are going to create a soft link to the data in 
 
 In order to do mapping later on, we need the reference genome. These data are for mouse, so we are going to use the mouse reference genome GRCh38 (mm10). Since we have subsetted the sequencing data to chr18, we will only use chr18 as the reference to reduce runtime.
 
-    cd /share/workshop/epigenetics_workshop/$USER/Methylation; mkdir References
+    cd /share/workshop/epigenetics_workshop/$USER/Methylation; mkdir References; cd References
     ln -s /share/workshop/epigenetics_workshop/jli/Methylation/References/chr18.fa .
 
 I always like to have a separate directory where I keep all of my scripts for running the workflow, as well as one subdirectory for storing the output from slurm.
