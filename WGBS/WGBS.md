@@ -124,7 +124,7 @@ In the MultiQC report, "M-Bias" plot is one important metric to look carefully. 
     jobid=$(sbatch -J qms.${USER} --array=1-6 qualimap_single.slurm |cut -d' ' -f4 - )
     sbatch -J qmm.${USER} --dependency=afterok:${jobid} qualimap_multi.slurm
 
-This tool produces a very nice report on the coverage along the whole genome. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/multisampleBamQcReport.html) is the one I created for the complete set of data. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/qualimapReport.html) is the report for a single sample.
+This tool produces a very nice report on the coverage along the whole genome. [Here](multisampleBamQcReport.html) is the one I created for the complete set of data. [Here](qualimapReport.html) is the report for a single sample.
 
 
 ---
