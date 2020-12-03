@@ -11,6 +11,8 @@
 #SBATCH --reservation=epigenetics-workshop # cluster account reservation
 #SBATCH --output=slurm_out/macs2-%A_%a.out # File to which STDOUT will be written
 #SBATCH --error=slurm_out/macs2-%A_%a.err # File to which STDERR will be written
+#SBATCH --mail-type=ALL # Type of email notification- BEGIN,END,FAIL,ALL
+#SBATCH --mail-user=myemail@email.com # Email to which notifications will be sent
 
 start=`date +%s`
 echo $HOSTNAME
