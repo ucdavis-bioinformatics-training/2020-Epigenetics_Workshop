@@ -1,6 +1,9 @@
 
 #lets install to current working directory and then load
-suppressWarnings(dir.create("r_lib"))
+
+new_rlib = file.path("/share/workshop/epigenetics_workshop", Sys.getenv("USER"),"r_lib")
+suppressWarnings(dir.create("r_lib"), recursive=T)
+
 new_rlib = file.path(getwd(),"r_lib")
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -11,6 +14,7 @@ require(DiffBind, lib.loc=new_rlib)
 require(ChIPQC, lib.loc=new_rlib)
 
 BiocManager::install("ATACseqQC", lib=new_rlib)
+
 require(ATACseqQC, lib.loc=new_rlib)
 
 BiocManager::install(c("ChIPpeakAnno", "MotifDb", "GenomicAlignments",
