@@ -176,7 +176,7 @@ After we got the list of differentially methylated regions, we can run [HOMER](h
 
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/05-DM
-    cp /share/biocore/projects/Internal_Jessie_UCD/Workshops/Epigenetics/05-DML/Differential_methylation_regions_EM24Mvs3M.txt .
+    cp /share/biocore/projects/Internal_Jessie_UCD/Workshops/Epigenetics/05-DML/Differential_methylation_regions_24Mvs3M.txt .
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/homer.slurm .
     sbatch -J hm.${USER} homer.slurm
