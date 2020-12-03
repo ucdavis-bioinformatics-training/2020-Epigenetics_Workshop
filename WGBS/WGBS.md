@@ -170,7 +170,7 @@ Once all packages have been successfully installed, we are going to use [this sc
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/run.R .
     R CMD BATCH run.R
 
-[Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/report.nb.html) is the report I generated for the subsampled data. [Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/report.all.nb.html) is the report I generated for the full set of data.
+[Here](chr18.nb.html) is the report I generated for the subsampled data. [Here](report.nb.html) is the report I generated for the full set of data.
 
 After we got the list of differentially methylated regions, we can run [HOMER](http://homer.ucsd.edu/homer/index.html) to create functional annotation of the regions. HOMER also can do enrichment analysis using the annotation results. Because there is only one differential methylated region found using the subsampled data, we are going to copy my result using the full dataset and then run HOMER with it.
 
@@ -181,7 +181,7 @@ After we got the list of differentially methylated regions, we can run [HOMER](h
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/homer.slurm .
     sbatch -J hm.${USER} homer.slurm
 
-[Here](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/anno.full.txt) is the annotation for the DMRs.
+[Here](anno.full.txt) is the annotation for the DMRs.
 
 
 ---
@@ -194,7 +194,7 @@ First, we are going to run "computeMatrix" from [deepTools](https://deeptools.re
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/deeptools.slurm .
     sbatch -J dt.${USER} deeptools.slurm
 
-In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/deeptools.slurm), we also run "plotHeatmap" from deepTools to generate a [plot](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/tss.png).
+In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/deeptools.slurm), we also run "plotHeatmap" from deepTools to generate a [plot](tss.expressed.png).
 
 As a part of running "computeMatrix" from deepTools, we obtained a file containing the methylation level information for the region of 2000bp around TSS for all genes in the two lists (expressed and not-expressed genes). We are going to use a R script to calculate the average levels at posiitons 2000bp around TSS and plot them.
 
@@ -203,7 +203,7 @@ As a part of running "computeMatrix" from deepTools, we obtained a file containi
     module load R/4.0.1
     R CMD BATCH plottss.R
 
-At the end, we got a [Methylation_TSS.pdf](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Epigenetics_Workshop/master/scripts/methylation/Methylation_TSS.pdf) file.
+At the end, we got a [Methylation_TSS.pdf](Methylation_TSS.pdf) file.
 
 ---
 
