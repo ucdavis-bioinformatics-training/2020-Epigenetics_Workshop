@@ -66,10 +66,10 @@ From [Wilbanks and Faccioti, PLoS One 2010](https://journals.plos.org/plosone/ar
     1. Go back through our QA/QC, how did this sample look?
     2. What might be a possible explaination for this?
 
-1. Lets do the same, but this time with the IGG sample (JLDY037L) as control.
+1. Lets do the same, but this time with the IGG sample (JLDY037D) as control.
 
     ```bash
-    macs2 callpeak  -t 03-Filter/JLDY037G/JLDY037G_filtered_blacklisted.bam -c 03-Filter/JLDY037L/JLDY037L_filtered_blacklisted.bam -f BAMPE  -n macs_test/JLDY037G_igg  -g mm  --keep-dup all
+    macs2 callpeak  -t 03-Filter/JLDY037G/JLDY037G_filtered_blacklisted.bam -c 03-Filter/JLDY037D/JLDY037D_filtered_blacklisted.bam -f BAMPE  -n macs_test/JLDY037G_igg  -g mm  --keep-dup all
     ```
 
     Lets count the number of peaks we found.
@@ -83,7 +83,7 @@ From [Wilbanks and Faccioti, PLoS One 2010](https://journals.plos.org/plosone/ar
     1. Go back through our QA/QC, how did this sample look?
     2. What might be a possible explaination for this?
 
-1. Lets do the same again, but this time with the raw IGG sample (JLDY037L) as control. I mapped the raw fastq data for the IGG sample, so no read processing or filtering.
+1. Lets do the same again, but this time with the raw IGG sample (JLDY037D) as control. I mapped the raw fastq data for the IGG sample, so no read processing or filtering.
 
     ```bash
     macs2 callpeak  -t 03-Filter/JLDY037G/JLDY037G_filtered_blacklisted.bam -c /share/biocore/workshops/2020_Epigenetics/ChIPseq/01-BWA-INIT/JLDY037D/JLDY037D_bwa.bam -f BAMPE  -n macs_test/JLDY037G_raw_igg  -g mm  --keep-dup all
