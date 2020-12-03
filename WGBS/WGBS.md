@@ -35,6 +35,7 @@ In order to do mapping later on, we need the reference genome. These data are fo
 I always like to have a separate directory where I keep all of my scripts for running the workflow, as well as one subdirectory for storing the output from slurm.
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation; mkdir scripts; cd scripts
+    ls ../00-RawData/*_1.fastq |cut -d'/' -f3 - |cut -d'_' -f1 - > allsamples.txt
     mkdir slurmout
 
 ---
@@ -62,7 +63,6 @@ The script [multiqc_pre.slurm](https://raw.githubusercontent.com/ucdavis-bioinfo
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/trimgalore.slurm .
-    ls ../00-RawData/*_1.fastq |cut -d'/' -f3 - |cut -d'_' -f1 - > allsamples.txt
     sbatch -J tg.${USER} --array=1-6 trimgalore.slurm
 
 After qc, one might want to run FastQC and MultiQC again (use [fastqc_pos.slurm]) to check how the data has changed.
