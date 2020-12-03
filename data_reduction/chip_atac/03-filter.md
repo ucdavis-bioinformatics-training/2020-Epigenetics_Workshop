@@ -114,7 +114,7 @@ To perfom these tasks we are going to use samtools and bedtools utilities.
     #SBATCH --output=slurm_out/filter-%A_%a.out # File to which STDOUT will be written
     #SBATCH --error=slurm_out/filter-%A_%a.err # File to which STDERR will be written
     #SBATCH --mail-type=ALL # Type of email notification- BEGIN,END,FAIL,ALL
-    #SBATCH --mail-user=settles@ucdavis.edu # Email to which notifications will be sent
+    #SBATCH --mail-user=myemail@email.com # Email to which notifications will be sent
 
     start=`date +%s`
     echo $HOSTNAME
@@ -260,7 +260,7 @@ samtools view exclude_chrM_shifted.bam | head -n 2
     #SBATCH --output=slurm_out/filter-%A_%a.out # File to which STDOUT will be written
     #SBATCH --error=slurm_out/filter-%A_%a.err # File to which STDERR will be written
     #SBATCH --mail-type=ALL # Type of email notification- BEGIN,END,FAIL,ALL
-    #SBATCH --mail-user=settles@ucdavis.edu # Email to which notifications will be sent
+    #SBATCH --mail-user=myemail@email.com # Email to which notifications will be sent
 
     start=`date +%s`
     echo $HOSTNAME
