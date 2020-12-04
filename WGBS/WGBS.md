@@ -199,6 +199,8 @@ After we got the list of differentially methylated regions, we can run [HOMER](h
 
 First, we are going to run "computeMatrix" from [deepTools](https://deeptools.readthedocs.io/en/latest/index.html) to generate methylation matrix around TSS for the three samples of 3M rod photoreceptor cells.
 
+    cd /share/workshop/epigenetics_workshop/$USER/Methylation/References
+    cp /share/biocore/projects/Internal_Jessie_UCD/Workshops/Epigenetics/References/*.0.bed .
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/deeptools.slurm .
     sbatch -J dt.${USER} deeptools.slurm
