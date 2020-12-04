@@ -131,6 +131,7 @@ dev.off()
 
 NFR score is a ratio between ATAC cut signal adjacent to TSS and that flanking the corresponding TSS. Each TSS window of 400 bp is first divided into 3 sub-regions: the most upstream 150 bp (n1), the most downstream of 150 bp (n2), and the middle 100 bp (nf). Then the number of fragments with 5’ ends overlapping each region are calculated for each TSS. The NFR score for each TSS is calculated as NFR-score = log2(nf) - log2((n1+n2)/2). A plot can be generated with the NFR scores as Y-axis and the average signals of 400 bp window as X-axis, very like a MA plot for gene expression data.
 
+
 ```r
 nfr <- NFRscore(gals[[1]], txs)
 pdf("Nucleosome_Free_Regions_score.pdf")
@@ -142,11 +143,7 @@ plot(nfr$log2meanCoverage, nfr$NFR_score,
 dev.off()
 ```
 
-<object data="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" type="application/pdf" width="60%"">
-    <embed src="http://yoursite.com/the.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+<embed src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" width="1000" height="60%" frameborder="0" allowfullscreen>
 
 
 ```r
@@ -158,6 +155,13 @@ plot(100*(-9:10-.5), tsse$values, type="b",
      ylab="aggregate TSS score")
 dev.off()
 ```
+
+<object data="./ATAC-05-DiffBind/TSSEscore.pdf" type="application/pdf" width="60%"">
+    <embed src="http://yoursite.com/the.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 
 ### DiffBind and Limma Voom
 
