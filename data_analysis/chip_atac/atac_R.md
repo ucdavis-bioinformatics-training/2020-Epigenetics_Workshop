@@ -237,13 +237,13 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
 1. We can use DiffBeaks to produce a PCA of samples
 
     ```r
-    pdf("DiffPeakPlots_ChIPseq.pdf")
+    pdf("DiffPeakPlots_ATACseq.pdf")
     dba.plotPCA(counts,  attributes=DBA_TREATMENT, label=DBA_ID)
     plot(counts)
     dev.off()
     ```
 
-    <embed src="./ATAC-05-DiffBind/DiffPeakPlots_ChIPseq.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
+    <embed src="./ATAC-05-DiffBind/DiffPeakPlots_ATACseq.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
     #
 
 1. Then we'll extract the reads and build a new counts table for use in other applications (ala Limma).
@@ -259,7 +259,7 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
 
     We'll extract the peak coordinates from the first sample
 
-    ```
+    ```r
     peak.info <- counts$peaks[[1]][,1:3]
     rownames(peak.info) <- gsub(" +", "", (apply(peak.info, 1, paste0, collapse = "_")))
     rownames(counts.table) <- rownames(peak.info)
@@ -277,6 +277,7 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
 
     dim(dgelist)
     ```
+
     Here we will choose a cutoff of 20 (semi-random choice) to produce a smaller more managable set of peaks. There are strategies using voom and the voom plot to better choose an appropriate cutoff. *BUT* in general we reduce the number of peaks to those that are most likely to be interesting.
 
     ```r
@@ -330,7 +331,7 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
 -->
     *Questions*
     1. How many Differential peaks are there? How many are DE and 'open' in 'single treatment', how many are open in control.
-    2. Transfer the DE table to your computer and view it in excel. You can view mine [here]([here](singleVcontrol.anno.DE_toptable.txt)
+    2. Transfer the DE table to your computer and view it in excel. You can view mine [here](ATAC-05-DiffBind/singleVcontrol.anno.DE_toptable.txt)
     3. Run the test for double_treatment vs control.
 
 
@@ -370,7 +371,7 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
     write.table (de.table, file=paste(gsub(" ","_","singleVcontrol"),".anno.DE_toptable.txt",sep=""), row.names = F, quote = FALSE, sep = "\t" )
     ```
 
-    *Qustions*
+    *Questions*
     1. What does the annotation data look like?
     1. What other features can we add (we added Symbol).
     1. Copy the new table to your computer and view in excel. My copy is [here](singleVcontrol.anno.DE_toptable.txt)
