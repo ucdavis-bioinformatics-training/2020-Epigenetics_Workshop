@@ -164,7 +164,7 @@ First, one has to modify the Bismark bedgraph output a little for DSS. DSS can r
 
 By running this script, files with "CpG.counts.txt" extension will be generated inside 04-Methylation directory.
 
-Now we are ready to import the methylation data into DSS, but first we have to install a few packages.
+**Sam has installed these packages in a place where everyone can access, so you should skip this section of running Rpackages.R.** 
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/Rpackages.R .
