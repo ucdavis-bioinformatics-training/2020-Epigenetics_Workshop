@@ -13,6 +13,8 @@ navigation:
     url: base/schedule
   - title: What is Bioinformatics/Genomics?
     url: https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/genomics/Genomics_a_perspective_May_2020.pdf
+  - title: Some Experimental Design?
+    url: https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/epigenetics/Epigenetics-expDesign_Dec_2020.pdf
 
   - heading: Support
   - title: Slack
