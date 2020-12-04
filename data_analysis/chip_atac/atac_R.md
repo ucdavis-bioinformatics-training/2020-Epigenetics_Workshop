@@ -324,7 +324,7 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
 -->
     *Questions*
     1. How many Differential peaks are there? How many are DE and 'open' in 'single treatment', how many are open in control.
-    2. Transfer the DE table to your computer and view it in excel.
+    2. Transfer the DE table to your computer and view it in excel. You can view mine [here]([here](singleVcontrol.anno.DE_toptable.txt)
     3. Run the test for double_treatment vs control.
 
 
@@ -367,3 +367,4 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
     *Qustions*
     1. What does the annotation data look like?
     1. What other features can we add (we added Symbol).
+    1. Copy the new table to your computer and view in excel. My copy is [here](singleVcontrol.anno.DE_toptable.txt)
