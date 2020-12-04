@@ -100,6 +100,15 @@ In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-trainin
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/multiqc_bismark.slurm .
 
+** If you have not finished running bismark_part1.slurm and would like to get the results for the downstream analysis, please use the following commands. **
+
+    cd /share/workshop/epigenetics_workshop/$USER/Methylation
+    mv 03-Bismakr 03-Bismark.${USER}
+    mv 04-Methylation 04-Methylation.${USER}
+    cp -r /share/workshop/epigenetics_workshop/jli/Methylation/03-Bismark .
+    cp -r /share/workshop/epigenetics_workshop/jli/Methylation/04-Methylation .
+
+
 In order to run MultiQC on the results of bismark, we are going to create a file that lists all of the relevant files and use it as input to MultiQC.
 
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/03-Bismark/*_PE_report.txt > input2.fofn
