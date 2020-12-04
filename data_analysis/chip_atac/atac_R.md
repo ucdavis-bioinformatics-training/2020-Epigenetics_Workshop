@@ -37,7 +37,7 @@ And then load your libraries
 require(DiffBind)
 require(ATACseqQC)
 library(BSgenome.Mmusculus.UCSC.mm10)
-library(TxDb.Mmusculus.UCSC.mm9.knownGene)
+library(TxDb.Mmusculus.UCSC.mm10.knownGene)
 library(edgeR)
 library(Rsamtools)
 library(stringr)
@@ -116,8 +116,10 @@ samplesheet
 
 ### Our first QC plots
 
+Alot of ATAC-seq QC is dependant on signal around TSS. So we first need to define the location of these sites. We'll use the transcript database (TxDb) from UCSC mm10.
+
 ```r
-txs <- transcripts(TxDb.Mmusculus.UCSC.mm9.knownGene)
+txs <- transcripts(TxDb.Mmusculus.UCSC.mm10.knownGene)
 ```
 
 #### Promoter/Transcript body (PT) score
@@ -158,7 +160,7 @@ dev.off()
 <embed src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
 
-
+#
 
 ### Transcription Start Site (TSS) Enrichment Score
 
@@ -175,8 +177,7 @@ dev.off()
 
 <embed src="./ATAC-05-DiffBind/TSSEscore.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
-
-
+#
 
 Encode recommended cutoff values for high quality data are listed below.
 
@@ -200,107 +201,169 @@ mm10 Refseq TSS annotation |	< 10	| Concerning |
 mm10 Refseq TSS annotation | 10 -15	| Acceptable |
 mm10 Refseq TSS annotation | > 15	| Ideal |
 
-### DiffBind and Limma Voom
 
-atac_dba = dba(sampleSheet=samplesheet)
+### Differential Peaks using DiffBind and Limma Voom
 
-counts = dba.count(atac_dba)
-
-pdf("DiffPeakPlots_ChIPseq.pdf")
-dba.plotPCA(counts,  attributes=DBA_TREATMENT, label=DBA_ID)
-plot(counts)
-dev.off()
+As you heard already, we tend to prefer Limma Voom over the other techniques out there, due to its model flexibility and speed.
 
 
-counts$peaks[[1]]$Reads
-counts.table <- do.call("cbind",lapply(counts$peaks, function(x)x$Reads))
+1. Merge and Count
+    First thing we need to do if DiffBind to *'merge'* the peaks in our samples and produce a binding affinity matrix (raw counts of reads to merged peaks). There are many algorithms to choose from, the default here should be sufficient:
 
-pdata <- counts$samples
-pdata
+        1. Counts first establishes summits as the location of maximum overlapping reads.
+        1. Recenters the data to the summit ('merged' peak regions)
+        1. And then counts the reads that align to the new peak.
 
-colnames(counts.table) <- pdata$SampleID
+    The peaks in the 'merged' peaks regions may be re-centered and trimmed based on the calculated summits (point of greatest read overlap) to provide more standardized peak intervals.
 
-peak.info <- counts$peaks[[1]][,1:3]
-rownames(peak.info) <- gsub(" +", "", (apply(peak.info, 1, paste0, collapse = "_")))
-rownames(counts.table) <- rownames(peak.info)
+    ```r
+    atac_dba = dba(sampleSheet=samplesheet)
+    counts = dba.count(atac_dba)
+    ```
 
-### Filtering
+    *Question/tasks*
+    1. What are the different parameters
+    1. Look at the object, what are our FRiP scores.
+    1. What are the different elements in the resulting list.
+    1. How many 'merged peaks to we have'?
+    1. Spend a little time getting to know the object.
 
-dgelist <- DGEList(counts.table,samples=pdata)
-dgelist <- calcNormFactors(dgelist)
+    Ideally you want your fraction of reads in called peak regions (FRiP score) to be >0.3, though values greater than 0.2 are acceptable. Note these values are different in that they are using the 'merged' set.
 
-dim(dgelist)
-cutoff <- 20
-drop <- apply(cpm(dgelist), 1, max) < cutoff
-dgefilter <- dgelist[!drop,]
-dim(dgefilter)
+1. We can use DiffBeaks to produce a PCA of samples
 
-pdf("atacseq_mds.pdf")
-plotMDS(dgefilter)
-dev.off()
+    pdf("DiffPeakPlots_ChIPseq.pdf")
+    dba.plotPCA(counts,  attributes=DBA_TREATMENT, label=DBA_ID)
+    plot(counts)
+    dev.off()
 
-design = model.matrix( ~ 0 + Treatment, dgefilter$samples)
-design
-colnames(design) <- sub("Treatment","",colnames(design))
-design
+    <embed src="./ATAC-05-DiffBind/DiffPeakPlots_ChIPseq.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
+    #
 
-contrasts_limma = makeContrasts(single_treatment-control,double_treatment-control, levels=design)
-contrasts_limma
+1. Then we'll extract the reads and build a new counts table for use in other applications (ala Limma).
 
-dgevoom <- voom(dgefilter,design=design)
+    ```r
+    head(counts$peaks[[1]]$Reads) # what the data look like
+    counts.table <- do.call("cbind",lapply(counts$peaks, function(x)x$Reads))
 
-fit <- lmFit(dgevoom,design=design)
-fit2 = contrasts.fit(fit, contrasts_limma)
-fit2 <- eBayes(fit2)
+    pdata <- counts$samples
+    pdata
+    colnames(counts.table) <- pdata$SampleID
+    ```
 
-de.table = topTable(fit2, coef=1, adjust="BH", sort.by="P", number=Inf)
-coords = str_match(rownames(de.table), "(.+?)_(\\d+)_(\\d+)")
-colnames(coords) <- c("id", "chr","start","end")
-de.table = data.frame(coords, de.table)
+    We'll extract the peak coordinates from the first sample
 
-table(DE=de.table$adj.P.Val<= 0.05, FCpos=de.table$logFC>0)
+    ```
+    peak.info <- counts$peaks[[1]][,1:3]
+    rownames(peak.info) <- gsub(" +", "", (apply(peak.info, 1, paste0, collapse = "_")))
+    rownames(counts.table) <- rownames(peak.info)
+    ```
 
+    And now we have an peak abundance table for all samples (counts.table) and experiment metadata table (pdata)
+
+1. Filtering and plotting a MDS
+
+    We need to create our Differential Gene Expression List (DGEList) object that limma uses and Calculate our normalizing factors.
+
+    ```r
+    dgelist <- DGEList(counts.table,samples=pdata)
+    dgelist <- calcNormFactors(dgelist)
+
+    dim(dgelist)
+    ```
+    Here we will choose a cutoff of 20 (semi-random choice) to produce a smaller more managable set of peaks. There are strategies using voom and the voom plot to better choose an appropriate cutoff. *BUT* in general we reduce the number of peaks to those that are most likely to be interesting.
+
+    ```r
+    cutoff <- 20
+    drop <- apply(cpm(dgelist), 1, max) < cutoff
+    dgefilter <- dgelist[!drop,]
+    dim(dgefilter)
+
+    pdf("atacseq_mds.pdf")
+    plotMDS(dgefilter)
+    dev.off()
+    ```
+
+    <embed src="./ATAC-05-DiffBind/atacseq_mds.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
+
+
+1. Finally, lets apply the model and produce our result.
+
+    We use the standard limma modelling after a voom transformation for read count data.
+
+    ```r
+    design = model.matrix( ~ 0 + Treatment, dgefilter$samples)
+    design
+    colnames(design) <- sub("Treatment","",colnames(design))
+    design
+
+    contrasts_limma = makeContrasts(single_treatment-control,double_treatment-control, levels=design)
+    contrasts_limma
+
+    dgevoom <- voom(dgefilter,design=design)
+
+    fit <- lmFit(dgevoom,design=design)
+    fit2 = contrasts.fit(fit, contrasts_limma)
+    fit2 <- eBayes(fit2)
+
+    de.table = topTable(fit2, coef=1, adjust="BH", sort.by="P", number=Inf)
+    coords = str_match(rownames(de.table), "(.+?)_(\\d+)_(\\d+)")
+    colnames(coords) <- c("id", "chr","start","end")
+    de.table = data.frame(coords, de.table)
+
+    table(DE=de.table$adj.P.Val<= 0.05, FCpos=de.table$logFC>0)
+
+    write.table (de.table, file=paste(gsub(" ","_","singleVcontrol"),".DE_toptable.txt",sep=""), row.names = F, quote = FALSE, sep = "\t" )
+    ```
+
+<!--
 #FCpos
 #DE      FALSE  TRUE
 #FALSE 10084  7496
 #TRUE   6659  4722
+-->
+    *Questions*
+    1. How many Differential peaks are there? How many are DE and 'open' in 'single treatment', how many are open in control.
+    2. Transfer the DE table to your computer and view it in excel.
+    3. Run the test for double_treatment vs control.
 
-write.table (de.table, file=paste(gsub(" ","_","singleVcontrol"),".DE_toptable.txt",sep=""), row.names = F, quote = FALSE, sep = "\t" )
 
-## Now look at the second contrast
-
-
-#Now do the Same for the second contrast double_treatment vs control
-
-table(DE=de.table$adj.P.Val<= 0.05, FCpos=de.table$logFC>0)
-
+<!--
+#table(DE=de.table$adj.P.Val<= 0.05, FCpos=de.table$logFC>0)
 #FCpos
 #DE      FALSE TRUE
 #FALSE  8484 6719
 #TRUE   8298 5460
+-->
 
+### Adding in Annotation using ChIPpeakAnno
 
+    We'll use the EnsDb package for Mouse and ChIPpeakAnno. To annotate we merge teh peaks from our data (our peak.info object) with the annoation data and combine with our DE table to produce an annotated to gene DE table.
 
-# Load libraries
+    ```r
+    annoData <- toGRanges(EnsDb.Mmusculus.v79, feature="gene")
 
-annoData <- toGRanges(EnsDb.Mmusculus.v79, feature="gene")
-annoData[1:2]
+    merged_overlaps <- GRanges(peak.info$Chr,IRanges(peak.info$Start, peak.info$End))
 
-merged_overlaps <- GRanges(peak.info$Chr,IRanges(peak.info$Start, peak.info$End))
-mcols(merged_overlaps)$peakNames=rownames(peak.info)
-overlaps.anno <- annotatePeakInBatch(merged_overlaps,
-                                     AnnotationData=annoData,
-                                     output="nearestBiDirectionalPromoters",
-                                     bindingRegion=c(-2000, 500))
+    overlaps.anno <- annotatePeakInBatch(merged_overlaps,
+                                         AnnotationData=annoData,
+                                         output="nearestBiDirectionalPromoters",
+                                         bindingRegion=c(-2000, 500))
 
+    # Alot of warnings appear, but none are severe.
 
-overlaps.anno <- addGeneIDs(overlaps.anno,
-                         "org.Mm.eg.db",
-                         IDs2Add = "symbol")
-head(overlaps.anno)
+    overlaps.anno <- addGeneIDs(overlaps.anno,
+                             "org.Mm.eg.db",
+                             IDs2Add = "symbol")
+    head(overlaps.anno)
 
-write.csv(as.data.frame(unname(overlaps.anno)),"anno.csv")                                     
-de.anno <- as.data.frame(mcols(overlaps.anno))[match(de.table$id, mcols(overlaps.anno)$peakNames),]
-de.table = data.frame(de.table, de.anno)
+    write.csv(as.data.frame(unname(overlaps.anno)),"anno.csv")                                     
+    de.anno <- as.data.frame(mcols(overlaps.anno))[match(de.table$id, mcols(overlaps.anno)$peakNames),]
+    de.table = data.frame(de.table, de.anno)
 
-write.table (de.table, file=paste(gsub(" ","_","singleVcontrol"),".anno.DE_toptable.txt",sep=""), row.names = F, quote = FALSE, sep = "\t" )
+    write.table (de.table, file=paste(gsub(" ","_","singleVcontrol"),".anno.DE_toptable.txt",sep=""), row.names = F, quote = FALSE, sep = "\t" )
+    ```
+
+    *Qustions*
+    1. What does the annotation data look like?
+    1. What other features can we add (we added Symbol).
