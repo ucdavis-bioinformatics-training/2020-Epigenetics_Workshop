@@ -136,6 +136,7 @@ dev.off()
 
 <embed src="./ATAC-05-DiffBind/Promoter-Transcript_body_score.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
+#
 
 
 #### Nucleosome Free Regions (NFR) score
@@ -157,9 +158,11 @@ dev.off()
 <embed src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
 
+
+
 ### Transcription Start Site (TSS) Enrichment Score
 
-TSS enrichment score is a raio between aggregate distribution of reads centered on TSSs and that flanking the corresponding TSSs. TSS score = the depth of TSS (each 100bp window within 1000 bp each side) / the depth of end flanks (100bp each end). TSSE score = max(mean(TSS score in each window)). TSS enrichment score is calculated according to the definition at https://www.encodeproject.org/data-standards/terms/#enrichment. Transcription start site (TSS) enrichment values are dependent on the reference files used; cutoff values for high quality data are listed in the following table from https://www.encodeproject.org/atac-seq/.
+TSS enrichment score is a raio between aggregate distribution of reads centered on TSSs and that flanking the corresponding TSSs. TSS score = the depth of TSS (each 100bp window within 1000 bp each side) / the depth of end flanks (100bp each end). TSSE score = max(mean(TSS score in each window)). TSS enrichment score is calculated according to the definition at https://www.encodeproject.org/data-standards/terms/#enrichment. Transcription start site (TSS) enrichment values are dependent on the reference files used.
 
 ```r
 tsse <- TSSEscore(gals[[1]], txs)
@@ -171,6 +174,11 @@ dev.off()
 ```
 
 <embed src="./ATAC-05-DiffBind/TSSEscore.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
+
+
+
+
+Encode recommended cutoff values for high quality data are listed below.
 
 *Question*
 1. what is the TSSEscore? *hint* its part of the tsse object.
