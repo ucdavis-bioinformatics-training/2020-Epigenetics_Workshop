@@ -142,8 +142,11 @@ plot(nfr$log2meanCoverage, nfr$NFR_score,
 dev.off()
 ```
 
-<img src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" alt="nfr" width="60%" type="application/pdf">/>
-
+<object data="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" type="application/pdf" width="60%"">
+    <embed src="http://yoursite.com/the.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 
 ```r
