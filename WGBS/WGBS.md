@@ -156,7 +156,7 @@ In the case where we decide to trim off more bases from looking at the M-bias pl
 
 **7\.** At this point, there are many avenues one who would like to explore. The first and the most obvious is the differential methylation analysis when one has more than one experimental group. In this case, we have two groups: 3M old rod photoreceptor cells and 24M old rod photoreceptor cells, with three replicates in each group. We are going to use the R package [DSS](http://bioconductor.org/packages/release/bioc/html/DSS.html) to carry out the differential methylation analysis.
 
-First, one has to modify the Bismark bedgraph output a little for DSS. DSS can read in methylation calls in tab delimited files with the columns being <chromosome> <pos> <count total> <count methylated>. The output (.bismark.cov.gz) from Bismark is in the format of <chromosome> <start> <end> <methylation percentage> <count methylated> <count unmethylated>.
+First, one has to modify the Bismark bedgraph output a little for DSS. DSS can read in methylation calls in tab delimited files with the columns being "<chromosome> <pos> <count total> <count methylated>". The output (.bismark.cov.gz) from Bismark is in the format of "<chromosome> <start> <end> <methylation percentage> <count methylated> <count unmethylated>".
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/gather_rawcounts.slurm .
