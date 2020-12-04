@@ -29,12 +29,13 @@ Then, let's get the raw data. We are going to create a soft link to the data in 
 
 In order to do mapping later on, we need the reference genome. These data are for mouse, so we are going to use the mouse reference genome GRCh38 (mm10). Since we have subsetted the sequencing data to chr18, we will only use chr18 as the reference to reduce runtime.
 
-    cd /share/workshop/epigenetics_workshop/$USER/Methylation; mkdir References
+    cd /share/workshop/epigenetics_workshop/$USER/Methylation; mkdir References; cd References
     ln -s /share/workshop/epigenetics_workshop/jli/Methylation/References/chr18.fa .
 
 I always like to have a separate directory where I keep all of my scripts for running the workflow, as well as one subdirectory for storing the output from slurm.
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation; mkdir scripts; cd scripts
+    ls ../00-RawData/*_1.fastq |cut -d'/' -f3 - |cut -d'_' -f1 - > allsamples.txt
     mkdir slurmout
 
 ---
@@ -62,7 +63,6 @@ The script [multiqc_pre.slurm](https://raw.githubusercontent.com/ucdavis-bioinfo
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/trimgalore.slurm .
-    ls ../00-RawData/*_1.fastq |cut -d'/' -f3 - |cut -d'_' -f1 - > allsamples.txt
     sbatch -J tg.${USER} --array=1-6 trimgalore.slurm
 
 After qc, one might want to run FastQC and MultiQC again (use [fastqc_pos.slurm]) to check how the data has changed.
@@ -100,12 +100,21 @@ In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-trainin
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/multiqc_bismark.slurm .
 
+**If you have not finished running bismark_part1.slurm and would like to get the results for the downstream analysis, please use the following commands.**
+
+    cd /share/workshop/epigenetics_workshop/$USER/Methylation
+    mv 03-Bismakr 03-Bismark.${USER}
+    mv 04-Methylation 04-Methylation.${USER}
+    cp -r /share/workshop/epigenetics_workshop/jli/Methylation/03-Bismark .
+    cp -r /share/workshop/epigenetics_workshop/jli/Methylation/04-Methylation .
+
+
 In order to run MultiQC on the results of bismark, we are going to create a file that lists all of the relevant files and use it as input to MultiQC.
 
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/03-Bismark/*_PE_report.txt > input2.fofn
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/03-Bismark/*.deduplication_report.txt >> input2.fofn
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*.M-bias.txt >> input2.fofn
-    ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*._splitting_report.txt >> input2.fofn
+    ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*_splitting_report.txt >> input2.fofn
     sbatch -J mqb.${USER} multiqc_bismark.slurm
 
 Once the job finishes successfully, we can download the MultiQC report (inside 04-Methylation) to our laptop to take a look: [here](multiqc_bismark_report.html) is the one I generated. [Here](multiqc_bismark_full_report.html) is the one I generated using the full set of data.
@@ -147,7 +156,7 @@ In the case where we decide to trim off more bases from looking at the M-bias pl
 
 **7\.** At this point, there are many avenues one who would like to explore. The first and the most obvious is the differential methylation analysis when one has more than one experimental group. In this case, we have two groups: 3M old rod photoreceptor cells and 24M old rod photoreceptor cells, with three replicates in each group. We are going to use the R package [DSS](http://bioconductor.org/packages/release/bioc/html/DSS.html) to carry out the differential methylation analysis.
 
-First, one has to modify the Bismark bedgraph output a little for DSS. DSS can read in methylation calls in tab delimited files with the columns being <chromosome> <pos> <count total> <count methylated>. The output (.bismark.cov.gz) from Bismark is in the format of <chromosome> <start> <end> <methylation percentage> <count methylated> <count unmethylated>.
+First, one has to modify the Bismark bedgraph output a little for DSS. DSS can read in methylation calls in tab delimited files with the columns being "chromosome, pos, count total, count methylated". The output (.bismark.cov.gz) from Bismark is in the format of "chromosome, start, end, methylation percentage, count methylated, count unmethylated".
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/gather_rawcounts.slurm .
@@ -155,10 +164,10 @@ First, one has to modify the Bismark bedgraph output a little for DSS. DSS can r
 
 By running this script, files with "CpG.counts.txt" extension will be generated inside 04-Methylation directory.
 
-Now we are ready to import the methylation data into DSS, but first we have to install a few packages.
+**Sam has installed these packages in a place where everyone can access, so you should skip this section of running Rpackages.R.** 
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
-    cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/Rpackage.R .
+    cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/Rpackages.R .
     module load R/4.0.1
     R CMD BATCH Rpackages.R
 
