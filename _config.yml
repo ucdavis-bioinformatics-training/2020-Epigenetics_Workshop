@@ -52,7 +52,7 @@ navigation:
 
   - heading: Data Analysis ChIPseq/ATACseq
   - title: Differential ChIPseq
-    url: data_analysis/chip-atac/chip_R
+    url: data_analysis/chip_atac/chip_R
   - title: Differential ATACseq
     url: data_analysis/chip_atac/atac_R
   - title: R Package Installation
