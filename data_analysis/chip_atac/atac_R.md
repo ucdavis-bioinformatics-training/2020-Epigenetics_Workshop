@@ -137,6 +137,7 @@ dev.off()
 <embed src="./ATAC-05-DiffBind/Promoter-Transcript_body_score.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
 
+
 #### Nucleosome Free Regions (NFR) score
 
 NFR score is a ratio between ATAC cut signal adjacent to TSS and that flanking the corresponding TSS. Each TSS window of 400 bp is first divided into 3 sub-regions: the most upstream 150 bp (n1), the most downstream of 150 bp (n2), and the middle 100 bp (nf). Then the number of fragments with 5’ ends overlapping each region are calculated for each TSS. The NFR score for each TSS is calculated as NFR-score = log2(nf) - log2((n1+n2)/2). A plot can be generated with the NFR scores as Y-axis and the average signals of 400 bp window as X-axis, very like a MA plot for gene expression data.
@@ -156,11 +157,12 @@ dev.off()
 <embed src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
 
-### TSSE
+### Transcription Start Site (TSS) Enrichment Score
+
+TSS enrichment score is a raio between aggregate distribution of reads centered on TSSs and that flanking the corresponding TSSs. TSS score = the depth of TSS (each 100bp window within 1000 bp each side) / the depth of end flanks (100bp each end). TSSE score = max(mean(TSS score in each window)). TSS enrichment score is calculated according to the definition at https://www.encodeproject.org/data-standards/terms/#enrichment. Transcription start site (TSS) enrichment values are dependent on the reference files used; cutoff values for high quality data are listed in the following table from https://www.encodeproject.org/atac-seq/.
 
 ```r
 tsse <- TSSEscore(gals[[1]], txs)
-tsse$TSSEscore
 pdf("TSSEscore.pdf")
 plot(100*(-9:10-.5), tsse$values, type="b",
      xlab="distance to TSS",
@@ -170,6 +172,25 @@ dev.off()
 
 <embed src="./ATAC-05-DiffBind/TSSEscore.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
+*Question*
+1. what is the TSSEscore? *hint* its part of the tsse object.
+
+Encode recommends:
+
+|Annotation used | Value| Resulting Data Status |
+| :--- | :--- |:--- |
+hg19 Refseq TSS annotation|	< 6	|Concerning |
+hg19 Refseq TSS annotation| 6 - 10 |	Acceptable |
+hg19 Refseq TSS annotation|> 10	| Ideal |
+GRCh38 Refseq TSS annotation |	< 5	| Concerning |
+GRCh38 Refseq TSS annotation | 5 - 7	| Acceptable |
+GRCh38 Refseq TSS annotation |> 7	|Ideal |
+mm9 GENCODE TSS annotation |	< 5 |	Concerning |
+mm9 GENCODE TSS annotation | 5 - 7 |	Acceptable |
+mm9 GENCODE TSS annotation | > 7	| Ideal |
+mm10 Refseq TSS annotation |	< 10	| Concerning |
+mm10 Refseq TSS annotation | 10 -15	| Acceptable |
+mm10 Refseq TSS annotation | > 15	| Ideal |
 
 ### DiffBind and Limma Voom
 
