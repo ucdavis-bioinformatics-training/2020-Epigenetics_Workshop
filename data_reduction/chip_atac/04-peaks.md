@@ -9,6 +9,7 @@ This document assumes [filtering of samples](./03-filter.md) has been completed.
 #cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/03-Filter /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
 #cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/03-Filter /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
 ```
+
 ## Model-based Analysis of ChIP-Seq (MACS2)
 MACS2 is a tool for identifying "Peaks" in such data as ChIPseq and ATACseq. MACS captures the influence of genome complexity to evaluate the significance of enriched regions.
 
