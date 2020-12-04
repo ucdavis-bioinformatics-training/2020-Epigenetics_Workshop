@@ -52,9 +52,9 @@ navigation:
   - title: Differential ChIPseq
     url: data_analysis/chip-atac/chip_R
   - title: Differential ATACseq
-    url: data_analysis/chip-atac/atac_R
+    url: data_analysis/chip_atac/atac_R
   - title: R Package Installation
-    url: data_analysis/chip-atac/install_packages
+    url: data_analysis/chip_atac/install_packages
 
   - heading: Methylation
   - title: Introduction to WGBS
