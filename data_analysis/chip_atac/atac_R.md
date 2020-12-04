@@ -1,4 +1,4 @@
-# Calling Peaks using MACS2
+#  Differntial ATACseq Peak Analysis
 
 This document assumes [calling of peaks with MACS2](./04-peaks.md) has been completed.
 
@@ -113,6 +113,10 @@ samplesheet
     })
     gals <- GAlignmentsList(gals)
     ```
+
+    *Questions*
+    1. How would you change things to view all chromosomes.
+
 
 ### Our first QC plots
 
@@ -232,10 +236,12 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
 
 1. We can use DiffBeaks to produce a PCA of samples
 
+    ```r
     pdf("DiffPeakPlots_ChIPseq.pdf")
     dba.plotPCA(counts,  attributes=DBA_TREATMENT, label=DBA_ID)
     plot(counts)
     dev.off()
+    ```
 
     <embed src="./ATAC-05-DiffBind/DiffPeakPlots_ChIPseq.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
     #
