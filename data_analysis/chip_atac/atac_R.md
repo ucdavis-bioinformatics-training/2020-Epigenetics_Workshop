@@ -118,7 +118,14 @@ samplesheet
 
 ```r
 txs <- transcripts(TxDb.Mmusculus.UCSC.mm9.knownGene)
+```
 
+#### Promoter/Transcript body (PT) score
+
+PT score is calculated as the coverage of promoter divided by the coverage of its transcript body. PT score will show if the signal is enriched in promoters.
+
+
+```r
 pt <- PTscore(gals[[1]], txs)
 pdf("Promoter-Transcript_body_score.pdf")
 plot(pt$log2meanCoverage, pt$PT_score,
@@ -126,6 +133,9 @@ plot(pt$log2meanCoverage, pt$PT_score,
      ylab="Promoter vs Transcript")
 dev.off()
 ```
+
+<embed src="./ATAC-05-DiffBind/Promoter-Transcript_body_score.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
+
 
 #### Nucleosome Free Regions (NFR) score
 
@@ -143,7 +153,10 @@ plot(nfr$log2meanCoverage, nfr$NFR_score,
 dev.off()
 ```
 
-<embed src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" width="1000" height="60%" frameborder="0" allowfullscreen>
+<embed src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
+
+
+### TSSE
 
 ```r
 tsse <- TSSEscore(gals[[1]], txs)
@@ -155,7 +168,7 @@ plot(100*(-9:10-.5), tsse$values, type="b",
 dev.off()
 ```
 
-[TSSEscore.pdf]("./ATAC-05-DiffBind/TSSEscore.pdf")
+<embed src="./ATAC-05-DiffBind/TSSEscore.pdf" width="80%" height="80%" frameborder="0" allowfullscreen>
 
 
 ### DiffBind and Limma Voom
