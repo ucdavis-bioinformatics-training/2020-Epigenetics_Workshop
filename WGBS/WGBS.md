@@ -167,7 +167,7 @@ By running this script, files with "CpG.counts.txt" extension will be generated 
 Now we are ready to import the methylation data into DSS, but first we have to install a few packages.
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
-    cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/Rpackage.R .
+    cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/Rpackages.R .
     module load R/4.0.1
     R CMD BATCH Rpackages.R
 
