@@ -105,7 +105,7 @@ In order to run MultiQC on the results of bismark, we are going to create a file
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/03-Bismark/*_PE_report.txt > input2.fofn
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/03-Bismark/*.deduplication_report.txt >> input2.fofn
     ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*.M-bias.txt >> input2.fofn
-    ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*._splitting_report.txt >> input2.fofn
+    ls /share/workshop/epigenetics_workshop/${USER}/Methylation/04-Methylation/*_splitting_report.txt >> input2.fofn
     sbatch -J mqb.${USER} multiqc_bismark.slurm
 
 Once the job finishes successfully, we can download the MultiQC report (inside 04-Methylation) to our laptop to take a look: [here](multiqc_bismark_report.html) is the one I generated. [Here](multiqc_bismark_full_report.html) is the one I generated using the full set of data.
