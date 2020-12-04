@@ -100,7 +100,7 @@ In the [script](https://raw.githubusercontent.com/ucdavis-bioinformatics-trainin
     cd /share/workshop/epigenetics_workshop/$USER/Methylation/scripts
     cp /share/workshop/epigenetics_workshop/jli/Methylation/scripts/src/multiqc_bismark.slurm .
 
-** If you have not finished running bismark_part1.slurm and would like to get the results for the downstream analysis, please use the following commands. **
+**If you have not finished running bismark_part1.slurm and would like to get the results for the downstream analysis, please use the following commands.**
 
     cd /share/workshop/epigenetics_workshop/$USER/Methylation
     mv 03-Bismakr 03-Bismark.${USER}
