@@ -145,7 +145,6 @@ dev.off()
 
 <embed src="./ATAC-05-DiffBind/Nucleosome_Free_Regions_score.pdf" width="1000" height="60%" frameborder="0" allowfullscreen>
 
-
 ```r
 tsse <- TSSEscore(gals[[1]], txs)
 tsse$TSSEscore
@@ -156,11 +155,7 @@ plot(100*(-9:10-.5), tsse$values, type="b",
 dev.off()
 ```
 
-<object data="./ATAC-05-DiffBind/TSSEscore.pdf" type="application/pdf" width="60%"">
-    <embed src="http://yoursite.com/the.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+[TSSEscore.pdf]("./ATAC-05-DiffBind/TSSEscore.pdf")
 
 
 ### DiffBind and Limma Voom
