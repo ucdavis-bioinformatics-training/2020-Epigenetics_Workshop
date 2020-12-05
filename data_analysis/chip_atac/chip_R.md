@@ -6,14 +6,14 @@ This document assumes [calling of peaks with MACS2](./04-peaks.md) has been comp
 **IF** for some reason it didn't finish, is corrupted or you missed the session, you can copy over a completed copy
 
 ```bash
-#cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/03-Filter /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
-#cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/03-Filter /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
+#cp -r /share/biocore/workshops/2020_Epigenetics/ChIPseq/04-MACS2 /share/workshop/epigenetics_workshop/$USER/chipseq_example/.
+#cp -r /share/biocore/workshops/2020_Epigenetics/ATACseq/04-MACS2 /share/workshop/epigenetics_workshop/$USER/atacseq_example/.
 ```
 
 ### First lets set up our environment and start R
 
 ```bash
-cd /share/workshop/epigenetics_workshop/msettles/chipseq_example/
+cd /share/workshop/epigenetics_workshop/$USER/chipseq_example/
 mkdir 05-DiffBind
 cd 05-DiffBind
 
