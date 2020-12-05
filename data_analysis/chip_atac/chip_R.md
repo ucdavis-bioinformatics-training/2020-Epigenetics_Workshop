@@ -1,5 +1,5 @@
 
-# Differntial ChIPseq Peak Analysis
+# Differential ChIPseq Peak Analysis
 
 This document assumes [calling of peaks with MACS2](./04-peaks.md) has been completed.
 
@@ -96,7 +96,7 @@ samplesheet
     ChIPQCreport(experiment, reportName="ChIPQC_Epigenetics_Workshop", reportFolder="ChIPQC_allchr_Epigenetics_Workshop")
     ```
 
-    [My ChIPseq QC Report](ChIPseq_QCreport/ChIPQC_allchr_Epigenetics_Workshop)
+    [My ChIPseq QC Report](ChIPseq_QCreport/ChIPQC_Epigenetics_Workshop.RData)
 
     * From Encode
         "Library complexity is measured using the Non-Redundant Fraction (NRF) and PCR Bottlenecking Coefficients 1 and 2, or PBC1 and PBC2. Preferred values are as follows: NRF>0.9, PBC1>0.9, and PBC2>10."
@@ -236,7 +236,7 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
 
 ### Adding in Annotation using ChIPpeakAnno
 
-    We'll use the EnsDb package for Mouse and ChIPpeakAnno. To annotate we merge teh peaks from our data (our peak.info object) with the annoation data and combine with our DE table to produce an annotated to gene DE table.
+We'll use the EnsDb package for Mouse and ChIPpeakAnno. To annotate we merge teh peaks from our data (our peak.info object) with the annoation data and combine with our DE table to produce an annotated to gene DE table.
 
     ```r
     annoData <- toGRanges(EnsDb.Mmusculus.v79, feature="gene")
@@ -261,7 +261,7 @@ As you heard already, we tend to prefer Limma Voom over the other techniques out
     write.table (de.table, file=paste(gsub(" ", "_", colnames(contrasts_limma)), ".anno.DE_toptable.txt",sep=""), row.names = F, quote = FALSE, sep = "\t" ) ```
     ```
 
-    *Questions*
-    1. What does the annotation data look like?
-    1. What other features can we add (we added Symbol).
-    1. Copy the new table to your computer and view in excel. My copy is [here](ChIP-05-DiffBind/T25_weeks_-_T10_weeks.anno.DE_toptable.txt)
+*Questions*
+1. What does the annotation data look like?
+1. What other features can we add (we added Symbol).
+1. Copy the new table to your computer and view in excel. My copy is [here](ChIP-05-DiffBind/T25_weeks_-_T10_weeks.anno.DE_toptable.txt)
