@@ -96,7 +96,7 @@ samplesheet
     ChIPQCreport(experiment, reportName="ChIPQC_Epigenetics_Workshop", reportFolder="ChIPQC_allchr_Epigenetics_Workshop")
     ```
 
-    [My ChIPseq QC Report](ChIP-05-DiffBind/ChIPQC_allchr_Epigenetics_Workshop/ChIPQC_allchr_Epigenetics_Workshop.html)
+    [My ChIPseq QC Report](ChIP-05-DiffBind/ChIPQC_allchr_Epigenetics_Workshop/ChIPQC_Epigenetics_Workshop.html)
 
     * From Encode
         "Library complexity is measured using the Non-Redundant Fraction (NRF) and PCR Bottlenecking Coefficients 1 and 2, or PBC1 and PBC2. Preferred values are as follows: NRF>0.9, PBC1>0.9, and PBC2>10."
