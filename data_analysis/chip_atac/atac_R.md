@@ -374,4 +374,4 @@ We'll use the EnsDb package for Mouse and ChIPpeakAnno. To annotate we merge teh
 *Questions*
 1. What does the annotation data look like?
 1. What other features can we add (we added Symbol).
-1. Copy the new table to your computer and view in excel. My copy is [here](singleVcontrol.anno.DE_toptable.txt)
+1. Copy the new table to your computer and view in excel. My copy is [here](ATAC-05-DiffBind/singleVcontrol.anno.DE_toptable.txt)
